@@ -1,9 +1,22 @@
-html,
+:root {
+  --font-primary: 'Lato', sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font-primary);
+  line-height: 1.5;
+}
+
+ul {
+  list-style: none;
 }
 
 a {
@@ -11,6 +24,7 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+img {
+  max-width: 100%;
+  height: auto;
 }
