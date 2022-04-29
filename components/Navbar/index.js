@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   Nav,
-  NavContainer,
-  NavLogo,
+  Logo,
   MobileIcon,
-  NavMenu,
-  NavItem,
-  NavLink
-} from './Elements'
+  Menu
+} from './Styled'
 import { FaBars } from 'react-icons/fa';
 
 const Navbar = () => {
@@ -17,34 +15,40 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <NavContainer>
+        <div className='nav__container'>
 
-          <NavLogo href='/'>
+          <Logo href='/'>
             <Image
               src='/lagalm.svg'
               alt='Lagalm Industrial'
               width={50} height={50} />
-          </NavLogo>
+          </Logo>
           
           <MobileIcon>
             <FaBars />
           </MobileIcon>
 
-          <NavMenu>
+          <Menu>
+            <Link href='/'>
+              <a className='menu__link'>
+                Inicio
+              </a>
+            </Link>
 
-            <NavItem href='/'>
-              <NavLink>Inicio</NavLink>
-            </NavItem>
-            <NavItem href='/about'>
-              <NavLink>Nosotros</NavLink>
-            </NavItem>
-            <NavItem href='/contact'>
-              <NavLink>Contacto</NavLink>
-            </NavItem>
+            <Link href='/about'>
+              <a className='menu__link'>
+                Nosotros
+              </a>
+            </Link>
 
-          </NavMenu>
+            <Link href='/contact'>
+              <a className='menu__link'>
+                Contacto
+              </a>
+            </Link>
+          </Menu>
 
-        </NavContainer>
+        </div>
       </Nav>
     </>
   );

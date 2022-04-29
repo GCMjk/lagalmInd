@@ -1,16 +1,16 @@
+import Link from 'next/link'
 import {
   FooterTop,
-  FooterLink,
   FooterBottom
-} from './Elements'
+} from './Styled'
 
 const Footer = () => {
   return (
     <footer>
     <FooterTop>
-      <FooterLink href='/job'>
+      <Link href='/job'>
         <a>Bolsa de trabajo</a>
-      </FooterLink>
+      </Link>
     </FooterTop>
     <FooterBottom>
       <p>Lagalm 2022 @ Todos los derechos reservados.</p>
