@@ -34,11 +34,9 @@ const Vacant = ({ vacant }) => {
           height={1080}
           layout="responsive"
         />
-        <div className='header__bottom'>
-          <p className={'header__available header__available'+(!available ? '--red' : '--green')}>
-            Vacante <span>{!available ? "no disponible" : "disponible"}</span>
-          </p>
-        </div>
+        <p className={'header__available header__available'+(!available ? '--red' : '--green')}>
+          Vacante <span>{!available ? "no disponible" : "disponible"}</span>
+        </p>
       </Header>
 
       <Content>
@@ -52,7 +50,7 @@ const Vacant = ({ vacant }) => {
         <p className='content__job'>
           {titleJob}
         </p>
-        <p className='content_description'>
+        <p className='content__description'>
           {description}
         </p>
 

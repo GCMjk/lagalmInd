@@ -29,9 +29,7 @@ export const Header = styled.div`
     }
   }
 
-  .header__bottom {
-
-    .header__available {
+  .header__available {
     margin: 0;
     font-family: 'Montserrat';
     font-weight: 400;
@@ -47,14 +45,12 @@ export const Header = styled.div`
     }
     
     &--green {
-    background: #0a9bb0;
+      background: #0a9bb0;
     }
 
     &--red {
       background: #f96d60;
     }
-  }
-
   }
 
 `;
@@ -76,7 +72,7 @@ export const Content = styled.div`
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     color: #000000;
   }
@@ -86,20 +82,22 @@ export const Content = styled.div`
     margin-bottom: 20px;
     font-family: 'Montserrat';
     font-weight: 400;
-    font-size: 1rem;
+    font-size: .8rem;
     text-transform: uppercase;
     color: #8F8F8F;
   }
 
-  .content_description {
+  .content__description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
     margin: 0;
     margin-bottom: 20px;
-    height: 4rem;
-    overflow: hidden;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1rem;
     line-height: 24px;
 
     color: #000000;
