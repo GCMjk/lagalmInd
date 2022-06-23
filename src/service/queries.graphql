@@ -1,0 +1,42 @@
+fragment Contact on Contact {
+  id
+  type
+  name
+  email
+  phone
+  age
+  company
+  workPosition
+  message
+  status
+}
+
+mutation AddContact($contact: ContactInput!) {
+  addContact(contact: $contact) {
+    status
+    message
+    contact {
+      ...Contact
+    }
+  }
+}
+
+query getContact($contactId: ID!) {
+  contact(id: $contactId) {
+    status
+    message
+    contact {
+      ...Contact
+    }
+  }
+}
+
+query getContacts {
+  contacts {
+    status
+    message
+    contacts {
+      ...Contact
+    }
+  }
+}
