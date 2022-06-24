@@ -2,18 +2,6 @@ import { ApolloClient, ApolloLink, createHttpLink, InMemoryCache } from '@apollo
 
 import { onError } from "@apollo/client/link/error";
 
-/* const authLink = setContext((_, { headers }) => {
-  // Read storag
-  const token = localStorage.getItem('token');
-
-  return {
-    headers: {
-      ...headers,
-      authorization: token,
-    },
-  };
-}); */
-
 const httpLink = createHttpLink({
   uri:
     `${process.env.NEXT_PUBLIC_URL_API}/graphql` ||

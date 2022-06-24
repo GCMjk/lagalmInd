@@ -11,6 +11,15 @@ fragment Contact on Contact {
   status
 }
 
+fragment Vacant on Vacant {
+  id
+  title
+  description
+  status
+  available
+  creationDate
+}
+
 mutation AddContact($contact: ContactInput!) {
   addContact(contact: $contact) {
     status
@@ -37,6 +46,26 @@ query getContacts {
     message
     contacts {
       ...Contact
+    }
+  }
+}
+
+query getVacant($vacantId: ID!) {
+  vacant(id: $vacantId) {
+    status
+    message
+    vacant {
+      ...Vacant
+    }
+  }
+}
+
+query getVacants {
+  vacants {
+    status
+    message
+    vacants {
+      ...Vacant
     }
   }
 }

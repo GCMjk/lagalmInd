@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Navbar from "@components/Navbar";
+import Header from "@components/Header";
 import Footer from "@components/Footer";
 
 type LayoutProps = {
@@ -20,8 +20,8 @@ const Layout = ({ children }: LayoutProps) => {
         />
         <link rel="shortcut icon" href="favicon.ico" />
       </Head>
-      <Navbar />
-      {children}
+      <Header />
+      <div style={{ height: "1000px" }}>{children}</div>
       <Footer />
     </>
   );
