@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../../public/lagalm.svg";
+import Logo from "@assets/img/logo.svg";
 
 import Nav from "@components/Header/Nav";
 import NavMobile from "@components/Header/NavMobile";
@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <header
       className={`${
-        bg ? "bg-black h-24" : "bg-black/5 h-20"
+        bg ? "bg-tertiary h-24 shadow-lg" : "bg-tertiary/5 h-20"
       } flex items-center fixed top-0 w-full text-white z-10 transition-all duration-300`}
     >
       <div className="container mx-auto h-full flex items-center justify-between lg:justify-around">
@@ -41,7 +41,7 @@ const Header = () => {
 
         {/* Translate */}
         <div className="hidden lg:block">
-          <Translate />
+          <Translate bg={bg} />
         </div>
 
         {/* NavMobile */}

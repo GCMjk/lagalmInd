@@ -1,7 +1,11 @@
+import Hero from "@components/Hero";
+import Customers from "@components/Customers";
+
 const Home = () => {
   return (
     <>
-      <p>Bienvenido</p>
+      <Hero />
+      <Customers />
     </>
   );
 };

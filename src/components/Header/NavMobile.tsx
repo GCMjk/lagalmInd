@@ -50,7 +50,7 @@ const NavMobile = () => {
         variants={circleVariants}
         initial="hidden"
         animate={isOpen ? "visible" : "hidden"}
-        className="w-4 h-4 rounded-full bg-blue-300 fixed top-0 right-0"
+        className="w-4 h-4 rounded-full bg-tertiary fixed top-0 right-0"
       ></motion.div>
 
       {/* menu */}
@@ -69,15 +69,15 @@ const NavMobile = () => {
         >
           <XIcon className="w-8 h-8" />
         </div>
-        {navigation.map((item, index) => {
+        {navigation.map(({ name, href }, index) => {
           return (
             <li className="mb-8 list-none" key={index}>
-              <Link href={item.href}>
+              <Link href={href}>
                 <a
                   onClick={() => setIsOpen(false)}
                   className="text-xl cursor-pointer capitalize"
                 >
-                  {item.name}
+                  {name}
                 </a>
               </Link>
             </li>

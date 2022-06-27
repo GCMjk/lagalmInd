@@ -9,24 +9,24 @@ const Nav = ({ bg }: { bg: boolean }) => {
   return (
     <nav>
       <ul className="flex space-x-8 capitalize text-[15px]">
-        {navigation.map((item, index) => {
+        {navigation.map(({ name, href }, index) => {
           return (
             <li
               className="hover:text-blue-200 cursor-pointer transition-all duration-200"
               key={index}
             >
-              <Link href={item.href}>
+              <Link href={href}>
                 <a
                   className={
-                    router.pathname === item.href
-                      ? "font-extrabold " +
+                    router.pathname === href
+                      ? "tracking-widest font-extrabold " +
                         (bg ? "text-white" : "text-slate-300")
                       : bg
                       ? "text-white"
                       : "text-slate-200"
                   }
                 >
-                  {item.name}
+                  {name}
                 </a>
               </Link>
             </li>
