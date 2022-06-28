@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { XIcon, MenuAlt3Icon } from "@heroicons/react/outline";
 
 import Translate from "@components/Header/Translate";
+import Socials from "@components/Socials";
 import { navigation } from "@service/data";
-import Link from "next/link";
 
 const NavMobile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +61,7 @@ const NavMobile = () => {
         animate={isOpen ? "visible" : ""}
         className={`${
           isOpen ? "right-0" : "-right-full"
-        } fixed top-0 bottom-0 w-full flex justify-center items-center flex-col transition-all duration-300 overflow-hidden`}
+        } fixed top-0 bottom-0 w-full flex justify-around items-center flex-col transition-all duration-300 overflow-hidden`}
       >
         {/* close icon */}
         <div
@@ -69,20 +70,28 @@ const NavMobile = () => {
         >
           <XIcon className="w-8 h-8" />
         </div>
-        {navigation.map(({ name, href }, index) => {
-          return (
-            <li className="mb-8 list-none" key={index}>
-              <Link href={href}>
-                <a
-                  onClick={() => setIsOpen(false)}
-                  className="text-xl cursor-pointer capitalize"
-                >
-                  {name}
-                </a>
-              </Link>
-            </li>
-          );
-        })}
+        <div>
+          <Translate bg />
+        </div>
+        <div className="flex justify-center flex-col items-center">
+          {navigation.map(({ name, href }, index) => {
+            return (
+              <li className="mb-8 list-none" key={index}>
+                <Link href={href}>
+                  <a
+                    onClick={() => setIsOpen(false)}
+                    className="text-xl cursor-pointer capitalize"
+                  >
+                    {name}
+                  </a>
+                </Link>
+              </li>
+            );
+          })}
+        </div>
+        <div>
+          <Socials bg={false} />
+        </div>
       </motion.div>
     </nav>
   );

@@ -44,138 +44,102 @@ const RrhhForm = () => {
   });
 
   return (
-    <div className="flex justify-center mt-5">
-      <div className="w-full max-w-sm">
-        <form
-          className="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4"
-          onSubmit={formik.handleSubmit}
-        >
-          {/* Nombre */}
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
-              Nombre
-            </label>
-            <input
-              className={
-                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline " +
-                (formik.touched.name && formik.errors.name
-                  ? "border-red-500"
-                  : "")
-              }
-              id="name"
-              type="text"
-              placeholder="Nombre del solicitante"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.name && formik.errors.name ? (
-              <p className="text-red-500 text-xs italic">
-                {formik.errors.name}
-              </p>
-            ) : null}
-          </div>
-
-          {/* Correo */}
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Correo
-            </label>
-            <input
-              className={
-                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline " +
-                (formik.touched.email && formik.errors.email
-                  ? "border-red-500"
-                  : "")
-              }
-              id="email"
-              type="email"
-              placeholder="Correo del solicitante"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <p className="text-red-500 text-xs italic">
-                {formik.errors.email}
-              </p>
-            ) : null}
-          </div>
-
-          {/* Teléfono */}
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="phone"
-            >
-              Teléfono
-            </label>
-            <input
-              className={
-                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline " +
-                (formik.touched.phone && formik.errors.phone
-                  ? "border-red-500"
-                  : "")
-              }
-              id="phone"
-              type="text"
-              placeholder="Teléfono del solicitante"
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.phone && formik.errors.phone ? (
-              <p className="text-red-500 text-xs italic">
-                {formik.errors.phone}
-              </p>
-            ) : null}
-          </div>
-
-          {/* Edad */}
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="age"
-            >
-              Edad
-            </label>
-            <input
-              className={
-                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline " +
-                (formik.touched.age && formik.errors.age
-                  ? "border-red-500"
-                  : "")
-              }
-              id="age"
-              type="text"
-              placeholder="Edad del solicitante"
-              value={formik.values.age}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.age && formik.errors.age ? (
-              <p className="text-red-500 text-xs italic">{formik.errors.age}</p>
-            ) : null}
-          </div>
-
+    <div className="flex-1 w-full mb-8 bg-white border border-gray-300 rounded-lg px-6 py-8">
+      <form className="flex flex-col gap-y-4" onSubmit={formik.handleSubmit}>
+        {/* Nombre */}
+        <div className="mb-4">
           <input
-            type="submit"
             className={
-              "bg-gray-800 w-full mt-5 p-2 text-white uppercase hover:bg-gray-900 " +
-              (formik.isValid && formik.dirty
-                ? "opacity-100 cursor-pointer"
-                : "opacity-40 cursor-default")
+              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              (formik.touched.name && formik.errors.name
+                ? "border-red-500"
+                : "")
             }
-            value="Enviar solicitud"
+            id="name"
+            type="text"
+            placeholder="Nombre del solicitante"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
-        </form>
-      </div>
+          {formik.touched.name && formik.errors.name ? (
+            <p className="text-red-500 text-xs italic">{formik.errors.name}</p>
+          ) : null}
+        </div>
+
+        {/* Correo */}
+        <div className="mb-4">
+          <input
+            className={
+              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              (formik.touched.email && formik.errors.email
+                ? "border-red-500"
+                : "")
+            }
+            id="email"
+            type="email"
+            placeholder="Correo del solicitante"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <p className="text-red-500 text-xs italic">{formik.errors.email}</p>
+          ) : null}
+        </div>
+
+        {/* Teléfono */}
+        <div className="mb-4">
+          <input
+            className={
+              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              (formik.touched.phone && formik.errors.phone
+                ? "border-red-500"
+                : "")
+            }
+            id="phone"
+            type="text"
+            placeholder="Teléfono del solicitante"
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.phone && formik.errors.phone ? (
+            <p className="text-red-500 text-xs italic">{formik.errors.phone}</p>
+          ) : null}
+        </div>
+
+        {/* Edad */}
+        <div className="mb-4">
+          <input
+            className={
+              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              (formik.touched.age && formik.errors.age ? "border-red-500" : "")
+            }
+            id="age"
+            type="text"
+            placeholder="Edad del solicitante"
+            value={formik.values.age}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.age && formik.errors.age ? (
+            <p className="text-red-500 text-xs italic">{formik.errors.age}</p>
+          ) : null}
+        </div>
+
+        <button
+          type="submit"
+          className={
+            "btn btn-md rounded md:btn-lg " +
+            (formik.isValid && formik.dirty
+              ? "opacity-100 cursor-pointer bg-tertiary hover:bg-accent-hover transition-all duration-300"
+              : "opacity-40 cursor-default bg-slate-600")
+          }
+        >
+          {formik.isValid && formik.dirty ? "Contactar" : "Llena los campos"}
+        </button>
+      </form>
     </div>
   );
 };

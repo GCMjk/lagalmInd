@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { certificaton, socials } from "@service/data";
+import { certificaton } from "@service/data";
+import Socials from "@components/Socials";
 
 const Footer = () => {
   return (
@@ -19,17 +20,7 @@ const Footer = () => {
               );
             })}
           </div>
-          <div className="flex justify-center items-center space-x-6">
-            {socials.map(({ icon, href }, index) => {
-              return (
-                <Link href={href} key={index}>
-                  <a className="text-tertiary text-md" target="_blank">
-                    {icon}
-                  </a>
-                </Link>
-              );
-            })}
-          </div>
+          <Socials bg />
           <div className="flex flex-col text-center text-paragraph opacity-60">
             <p className="text-[15px]">
               &copy; 2022 Lagalm Industrial S.A. de C.V.

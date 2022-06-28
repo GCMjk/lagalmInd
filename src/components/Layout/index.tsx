@@ -20,7 +20,7 @@ const Layout = ({ children }: LayoutProps) => {
         <link rel="shortcut icon" href={Logo} type="image/x-icon" />
       </Head>
       <Header />
-      <div style={{ height: "1000px" }}>{children}</div>
+      <div style={{ height: "1800px" }}>{children}</div>
       <Footer />
     </>
   );

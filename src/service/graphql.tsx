@@ -37,7 +37,7 @@ export type Contact = {
   /** Purpose of contact */
   type: Purpose;
   /** Contact work position */
-  workPosition?: Maybe<Scalars['String']>;
+  workPosition?: Maybe<WorkPosition>;
 };
 
 /** Contact input for vacancies or sales */
@@ -59,7 +59,7 @@ export type ContactInput = {
   /** Contact status */
   status?: InputMaybe<Scalars['Boolean']>;
   /** Purpose of contact */
-  type?: Purpose;
+  type: Purpose;
   /** Contact work position */
   workPosition?: InputMaybe<WorkPosition>;
 };
@@ -168,7 +168,7 @@ export type PermissionInput = {
   /** Until what time? */
   to: Scalars['String'];
   /** Permit type */
-  type?: TypePermission;
+  type: TypePermission;
   /** Requesting user */
   user?: InputMaybe<Scalars['ID']>;
 };
@@ -176,8 +176,7 @@ export type PermissionInput = {
 /** Purpose of contact */
 export enum Purpose {
   Rrhh = 'RRHH',
-  Sales = 'SALES',
-  Undefined = 'undefined'
+  Sales = 'SALES'
 }
 
 export type Query = {
@@ -369,8 +368,7 @@ export enum TypePermission {
   CambioTurno = 'CAMBIO_TURNO',
   Falta = 'FALTA',
   LlegarTarde = 'LLEGAR_TARDE',
-  Retirarse = 'RETIRARSE',
-  Undefined = 'undefined'
+  Retirarse = 'RETIRARSE'
 }
 
 /**
@@ -455,11 +453,10 @@ export enum WorkPosition {
   Otros = 'OTROS',
   RecursosHumanos = 'RECURSOS_HUMANOS',
   Sistemas = 'SISTEMAS',
-  Ventas = 'VENTAS',
-  Undefined = 'undefined'
+  Ventas = 'VENTAS'
 }
 
-export type ContactFragment = { __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: string | null, message?: string | null, status: boolean };
+export type ContactFragment = { __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: WorkPosition | null, message?: string | null, status: boolean };
 
 export type VacantFragment = { __typename?: 'Vacant', id?: string | null, title: string, description: string, status: boolean, available: boolean, creationDate: string };
 
@@ -468,19 +465,19 @@ export type AddContactMutationVariables = Exact<{
 }>;
 
 
-export type AddContactMutation = { __typename?: 'Mutation', addContact?: { __typename?: 'ResultContact', status: boolean, message: string, contact?: { __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: string | null, message?: string | null, status: boolean } | null } | null };
+export type AddContactMutation = { __typename?: 'Mutation', addContact?: { __typename?: 'ResultContact', status: boolean, message: string, contact?: { __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: WorkPosition | null, message?: string | null, status: boolean } | null } | null };
 
 export type GetContactQueryVariables = Exact<{
   contactId: Scalars['ID'];
 }>;
 
 
-export type GetContactQuery = { __typename?: 'Query', contact?: { __typename?: 'ResultContact', status: boolean, message: string, contact?: { __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: string | null, message?: string | null, status: boolean } | null } | null };
+export type GetContactQuery = { __typename?: 'Query', contact?: { __typename?: 'ResultContact', status: boolean, message: string, contact?: { __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: WorkPosition | null, message?: string | null, status: boolean } | null } | null };
 
 export type GetContactsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetContactsQuery = { __typename?: 'Query', contacts?: { __typename?: 'ResultContacts', status: boolean, message: string, contacts?: Array<{ __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: string | null, message?: string | null, status: boolean }> | null } | null };
+export type GetContactsQuery = { __typename?: 'Query', contacts?: { __typename?: 'ResultContacts', status: boolean, message: string, contacts?: Array<{ __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: WorkPosition | null, message?: string | null, status: boolean }> | null } | null };
 
 export type GetVacantQueryVariables = Exact<{
   vacantId: Scalars['ID'];
