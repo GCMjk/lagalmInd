@@ -60,12 +60,12 @@ const SalesForm = () => {
 
   return (
     <div className="mb-8 bg-white border border-gray-300 rounded-lg px-6 py-8">
-      <form className="flex flex-col gap-y-4" onSubmit={formik.handleSubmit}>
+      <form className="form" onSubmit={formik.handleSubmit}>
         {/* Nombre */}
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.name && formik.errors.name
                 ? "border-red-500"
                 : "")
@@ -78,7 +78,7 @@ const SalesForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.name && formik.errors.name ? (
-            <p className="text-red-500 text-xs italic">{formik.errors.name}</p>
+            <p className="input--error">{formik.errors.name}</p>
           ) : null}
         </div>
 
@@ -86,7 +86,7 @@ const SalesForm = () => {
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.email && formik.errors.email
                 ? "border-red-500"
                 : "")
@@ -99,7 +99,7 @@ const SalesForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className="text-red-500 text-xs italic">{formik.errors.email}</p>
+            <p className="input--error">{formik.errors.email}</p>
           ) : null}
         </div>
 
@@ -107,7 +107,7 @@ const SalesForm = () => {
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.phone && formik.errors.phone
                 ? "border-red-500"
                 : "")
@@ -120,7 +120,7 @@ const SalesForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.phone && formik.errors.phone ? (
-            <p className="text-red-500 text-xs italic">{formik.errors.phone}</p>
+            <p className="input--error">{formik.errors.phone}</p>
           ) : null}
         </div>
 
@@ -128,7 +128,7 @@ const SalesForm = () => {
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.company && formik.errors.company
                 ? "border-red-500"
                 : "")
@@ -141,9 +141,7 @@ const SalesForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.company && formik.errors.company ? (
-            <p className="text-red-500 text-xs italic">
-              {formik.errors.company}
-            </p>
+            <p className="input--error">{formik.errors.company}</p>
           ) : null}
         </div>
 
@@ -151,7 +149,7 @@ const SalesForm = () => {
         <div className="mb-4">
           <select
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.workPosition && formik.errors.workPosition
                 ? "border-red-500"
                 : "")
@@ -170,9 +168,7 @@ const SalesForm = () => {
             })}
           </select>
           {formik.touched.workPosition && formik.errors.workPosition ? (
-            <p className="text-red-500 text-xs italic">
-              {formik.errors.workPosition}
-            </p>
+            <p className="input--error">{formik.errors.workPosition}</p>
           ) : null}
         </div>
 
@@ -191,9 +187,7 @@ const SalesForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.message && formik.errors.message ? (
-            <p className="text-red-500 text-xs italic">
-              {formik.errors.message}
-            </p>
+            <p className="input--error">{formik.errors.message}</p>
           ) : null}
         </div>
 

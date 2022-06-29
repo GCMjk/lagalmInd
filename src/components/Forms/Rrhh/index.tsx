@@ -44,13 +44,13 @@ const RrhhForm = () => {
   });
 
   return (
-    <div className="flex-1 w-full mb-8 bg-white border border-gray-300 rounded-lg px-6 py-8">
-      <form className="flex flex-col gap-y-4" onSubmit={formik.handleSubmit}>
+    <div className="mb-8 bg-white border border-gray-300 rounded-lg px-6 py-8">
+      <form className="form" onSubmit={formik.handleSubmit}>
         {/* Nombre */}
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.name && formik.errors.name
                 ? "border-red-500"
                 : "")
@@ -63,7 +63,7 @@ const RrhhForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.name && formik.errors.name ? (
-            <p className="text-red-500 text-xs italic">{formik.errors.name}</p>
+            <p className="input--error">{formik.errors.name}</p>
           ) : null}
         </div>
 
@@ -71,7 +71,7 @@ const RrhhForm = () => {
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.email && formik.errors.email
                 ? "border-red-500"
                 : "")
@@ -84,7 +84,7 @@ const RrhhForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className="text-red-500 text-xs italic">{formik.errors.email}</p>
+            <p className="input--error">{formik.errors.email}</p>
           ) : null}
         </div>
 
@@ -92,7 +92,7 @@ const RrhhForm = () => {
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.phone && formik.errors.phone
                 ? "border-red-500"
                 : "")
@@ -105,7 +105,7 @@ const RrhhForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.phone && formik.errors.phone ? (
-            <p className="text-red-500 text-xs italic">{formik.errors.phone}</p>
+            <p className="input--error">{formik.errors.phone}</p>
           ) : null}
         </div>
 
@@ -113,7 +113,7 @@ const RrhhForm = () => {
         <div className="mb-4">
           <input
             className={
-              "border border-gray-300 focus:border-tertiary rounded w-full px-4 h-14 text-sm outline-none " +
+              "input " +
               (formik.touched.age && formik.errors.age ? "border-red-500" : "")
             }
             id="age"
@@ -124,16 +124,16 @@ const RrhhForm = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.age && formik.errors.age ? (
-            <p className="text-red-500 text-xs italic">{formik.errors.age}</p>
+            <p className="input--error">{formik.errors.age}</p>
           ) : null}
         </div>
 
         <button
           type="submit"
           className={
-            "btn btn-md rounded md:btn-lg " +
+            "btn btn--md rounded md:btn--lg " +
             (formik.isValid && formik.dirty
-              ? "opacity-100 cursor-pointer bg-tertiary hover:bg-accent-hover transition-all duration-300"
+              ? "opacity-100 cursor-pointer btn--hover"
               : "opacity-40 cursor-default bg-slate-600")
           }
         >
