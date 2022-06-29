@@ -5,8 +5,8 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['res.cloudinary.com']
-  }
-}
+    domains: ["picsum.photos"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -200,9 +200,9 @@ const SalesForm = () => {
         <button
           type="submit"
           className={
-            "btn btn-md rounded md:btn-lg " +
+            "btn btn--md rounded md:btn--lg " +
             (formik.isValid && formik.dirty
-              ? "opacity-100 cursor-pointer bg-tertiary hover:bg-accent-hover transition-all duration-300"
+              ? "opacity-100 cursor-pointer btn--hover"
               : "opacity-40 cursor-default bg-slate-600")
           }
         >

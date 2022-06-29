@@ -424,6 +424,8 @@ export type Vacant = {
   description: Scalars['String'];
   /** Unique identifier */
   id?: Maybe<Scalars['ID']>;
+  /** Vacant image */
+  image: Scalars['String'];
   /** Vacant status */
   status: Scalars['Boolean'];
   /** Vacant name */
@@ -438,6 +440,8 @@ export type VacantInput = {
   description: Scalars['String'];
   /** Unique identifier */
   id?: InputMaybe<Scalars['ID']>;
+  /** Vacant image */
+  image: Scalars['String'];
   /** Vacant status */
   status?: InputMaybe<Scalars['Boolean']>;
   /** Vacant title */
@@ -458,7 +462,7 @@ export enum WorkPosition {
 
 export type ContactFragment = { __typename?: 'Contact', id?: string | null, type: Purpose, name: string, email: string, phone?: string | null, age?: string | null, company?: string | null, workPosition?: WorkPosition | null, message?: string | null, status: boolean };
 
-export type VacantFragment = { __typename?: 'Vacant', id?: string | null, title: string, description: string, status: boolean, available: boolean, creationDate: string };
+export type VacantFragment = { __typename?: 'Vacant', id?: string | null, title: string, description: string, status: boolean, available: boolean, image: string, creationDate: string };
 
 export type AddContactMutationVariables = Exact<{
   contact: ContactInput;
@@ -484,15 +488,15 @@ export type GetVacantQueryVariables = Exact<{
 }>;
 
 
-export type GetVacantQuery = { __typename?: 'Query', vacant?: { __typename?: 'ResultVacant', status: boolean, message: string, vacant?: { __typename?: 'Vacant', id?: string | null, title: string, description: string, status: boolean, available: boolean, creationDate: string } | null } | null };
+export type GetVacantQuery = { __typename?: 'Query', vacant?: { __typename?: 'ResultVacant', status: boolean, message: string, vacant?: { __typename?: 'Vacant', id?: string | null, title: string, description: string, status: boolean, available: boolean, image: string, creationDate: string } | null } | null };
 
 export type GetVacantsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetVacantsQuery = { __typename?: 'Query', vacants?: { __typename?: 'ResultVacants', status: boolean, message: string, vacants?: Array<{ __typename?: 'Vacant', id?: string | null, title: string, description: string, status: boolean, available: boolean, creationDate: string }> | null } | null };
+export type GetVacantsQuery = { __typename?: 'Query', vacants?: { __typename?: 'ResultVacants', status: boolean, message: string, vacants?: Array<{ __typename?: 'Vacant', id?: string | null, title: string, description: string, status: boolean, available: boolean, image: string, creationDate: string }> | null } | null };
 
 export const ContactFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Contact"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Contact"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"workPosition"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]} as unknown as DocumentNode<ContactFragment, unknown>;
-export const VacantFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Vacant"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Vacant"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"available"}},{"kind":"Field","name":{"kind":"Name","value":"creationDate"}}]}}]} as unknown as DocumentNode<VacantFragment, unknown>;
+export const VacantFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Vacant"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Vacant"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"available"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"creationDate"}}]}}]} as unknown as DocumentNode<VacantFragment, unknown>;
 export const AddContactDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddContact"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"contact"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ContactInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addContact"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"contact"},"value":{"kind":"Variable","name":{"kind":"Name","value":"contact"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"contact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Contact"}}]}}]}}]}},...ContactFragmentDoc.definitions]} as unknown as DocumentNode<AddContactMutation, AddContactMutationVariables>;
 export const GetContactDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContact"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"contactId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contact"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"contactId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"contact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Contact"}}]}}]}}]}},...ContactFragmentDoc.definitions]} as unknown as DocumentNode<GetContactQuery, GetContactQueryVariables>;
 export const GetContactsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"contacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Contact"}}]}}]}}]}},...ContactFragmentDoc.definitions]} as unknown as DocumentNode<GetContactsQuery, GetContactsQueryVariables>;

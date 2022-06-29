@@ -1,4 +1,4 @@
-import VacantItem from "@components/Vacant/Item";
+import VacantItem from "@components/Vacant/Detail";
 
 const Vacant = () => {
   return (

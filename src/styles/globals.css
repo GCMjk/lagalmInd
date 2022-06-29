@@ -16,23 +16,8 @@
   h6 {
     @apply text-white font-primary;
   }
-  .section {
-    @apply py-12 lg:py-32;
-  }
-  .section-title {
-    @apply text-3xl lg:text-4xl font-medium lg:font-extrabold mb-5;
-  }
   .subtitle {
     @apply text-base text-paragraph mb-16 lg:mb-24 max-w-[520px];
-  }
-  .btn {
-    @apply py-4 px-7 font-medium text-white flex items-center justify-center rounded-sm shadow-xl transition-all;
-  }
-  .btn-lg {
-    @apply h-[54px];
-  }
-  .btn-md {
-    @apply h-[48px];
   }
   .input {
     @apply bg-secondary text-paragraph h-[60px] outline-none pl-6 w-full font-body text-[15px] rounded-sm focus:outline focus:outline-1 focus:outline-accent;
@@ -42,5 +27,82 @@
   }
   .active {
     @apply text-accent;
+  }
+}
+
+@layer components {
+  /* BUTTON */
+  .btn {
+    @apply flex flex-grow items-center justify-center h-[42px] py-2 px-4 rounded-md shadow-xl font-medium text-white bg-tertiary transition-all duration-300;
+
+    /* size */
+    &--md {
+      @apply h-[50px];
+    }
+    &--lg {
+      @apply h-[58px];
+    }
+
+    /* Hover */
+    &--hover {
+      @apply hover:bg-accent-hover;
+    }
+
+    /* Outline */
+    &--outline {
+      @apply text-tertiary bg-white border border-tertiary;
+
+      &--hover {
+        @apply text-tertiary bg-white border border-tertiary hover:text-white hover:bg-tertiary hover:border-white;
+      }
+    }
+  }
+
+  /* CARD */
+  .card {
+    @apply bg-white text-gray-700 w-full min-h-[10rem] shadow-lg rounded-md overflow-hidden;
+
+    /* Section img */
+    &-img {
+      @apply relative w-full h-[200px] lg:h-[300px];
+
+      &__img {
+        @apply object-cover;
+      }
+    }
+
+    /* Section content */
+    &-content {
+      @apply p-5 flex flex-col gap-2 lg:p-6;
+
+      /* badge */
+      &__badge {
+        @apply font-body px-3 py-1 rounded-full tracking-wider uppercase text-xs bg-gray-100/80;
+
+        /* green */
+        &--green {
+          @apply border border-green-300/60 text-green-500;
+        }
+        /* red */
+        &--red {
+          @apply border border-red-300/60 text-red-500;
+        }
+      }
+
+      /* title */
+      &__title {
+        @apply text-paragraph font-body font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap;
+      }
+
+      /* desciption */
+      &__description {
+        @apply my-3 text-sm text-gray-600 line-clamp-2;
+      }
+
+      /* buttons */
+      &__buttons {
+        @apply flex justify-around gap-2;
+      }
+    }
   }
 }

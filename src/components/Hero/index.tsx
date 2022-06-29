@@ -21,7 +21,7 @@ const Hero = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing illo ad labore
               dolor elit.
             </p>
-            <button className="btn btn-md rounded bg-tertiary hover:bg-accent-hover transition-all duration-300 md:btn-lg">
+            <button className="btn md:btn--md lg:btn--lg btn--hover">
               Lorem, ipsum.
             </button>
           </div>
