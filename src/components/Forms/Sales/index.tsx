@@ -2,11 +2,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { useMutation } from "@apollo/client";
-import { AddContactDocument, Purpose, WorkPosition } from "@service/graphql";
+import { AddContactDocument, ContactWorkPositionEnum } from "@service/graphql";
 
-const enumWorkPosition = Object.keys(WorkPosition).map((name) => {
+const enumWorkPosition = Object.keys(ContactWorkPositionEnum).map((name) => {
   return {
-    id: WorkPosition[name as keyof typeof WorkPosition],
+    id: ContactWorkPositionEnum[name as keyof typeof ContactWorkPositionEnum],
     name: name.replace(/([A-Z])/g, " $1").trim(),
   };
 });
@@ -20,7 +20,7 @@ const SalesForm = () => {
       email: "",
       phone: "",
       company: "",
-      workPosition: WorkPosition.Otros,
+      workPosition: ContactWorkPositionEnum.Otros,
       message: "",
     },
     validationSchema: Yup.object({
@@ -45,7 +45,6 @@ const SalesForm = () => {
               name,
               email,
               phone,
-              type: Purpose.Sales,
               company,
               workPosition,
               message,

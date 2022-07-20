@@ -13,9 +13,7 @@ fragment Contact on RrhhContact {
     workPosition
     message
   }
-  details {
-    ...Details
-  }
+  creationDate
 }
 
 fragment Vacant on RrhhVacant {
