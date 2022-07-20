@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useMutation } from "@apollo/client";
 import { AddContactDocument, Purpose } from "@service/graphql";
 
-const RrhhForm = () => {
+const RrhhForm = ({ idVacant }: { idVacant: string }) => {
   const [newContactRrhh] = useMutation(AddContactDocument);
 
   const formik = useFormik({

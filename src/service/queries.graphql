@@ -17,7 +17,6 @@ fragment Vacant on Vacant {
   description
   status
   available
-  image
   creationDate
 }
 

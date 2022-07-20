@@ -4,14 +4,14 @@ import { BsArrowRight } from "react-icons/bs";
 
 import { Vacant } from "@service/graphql";
 
-const VacantList = ({ vacantItem }: { vacantItem: Vacant }) => {
-  const { id, title, description, available, image } = vacantItem;
+const VacantItem = ({ vacantItem }: { vacantItem: Vacant }) => {
+  const { id, title, description, available } = vacantItem;
   return (
     <div className="card">
       <div className="card-img">
         <Image
           className="card-img__img"
-          src={image}
+          src="https://picsum.photos/id/4/600"
           layout="fill"
           alt={title}
         />
@@ -56,4 +56,4 @@ const VacantList = ({ vacantItem }: { vacantItem: Vacant }) => {
   );
 };
 
-export default VacantList;
+export default VacantItem;

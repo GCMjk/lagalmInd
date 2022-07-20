@@ -2,7 +2,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import client from "@service/client";
 
 import { GetVacantsDocument, Vacant } from "@service/graphql";
-import VacantList from "@components/Vacant/Item";
+import VacantItem from "@components/Vacant/Item";
 
 export const getStaticProps: GetStaticProps<{
   vacants: Vacant[];
@@ -63,7 +63,7 @@ const Vacants = ({
                 const { status, available } = vacant;
                 return status ? (
                   <div className={available ? "" : "opacity-50 cursor-default"}>
-                    <VacantList vacantItem={vacant} key={vacant.id} />
+                    <VacantItem vacantItem={vacant} key={vacant.id} />
                   </div>
                 ) : null;
               })}
