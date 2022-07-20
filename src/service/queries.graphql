@@ -1,26 +1,54 @@
-fragment Contact on Contact {
-  id
-  type
+fragment Contact on RrhhContact {
   name
   email
   phone
-  age
-  company
-  workPosition
-  message
-  status
+  ... on RrhhContactRrhh {
+    vacantId {
+      ...Vacant
+    }
+    age
+  }
+  ... on RrhhContactSales {
+    company
+    workPosition
+    message
+  }
+  details {
+    ...Details
+  }
 }
 
-fragment Vacant on Vacant {
+fragment Vacant on RrhhVacant {
   id
+  jobId {
+    title
+    description
+    image
+  }
   title
   description
-  status
   available
-  creationDate
+  details {
+    ...Details
+  }
 }
 
-mutation AddContact($contact: ContactInput!) {
+fragment Details on Details {
+  status
+  creatorUserId
+  creatorUser {
+    name
+    email
+  }
+  creationDate
+  modifierUserId {
+    name
+    email
+  }
+  lastModification
+}
+
+mutation AddContact($contact: RrhhContactInput!) {
   addContact(contact: $contact) {
     status
     message

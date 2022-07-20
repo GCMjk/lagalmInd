@@ -1,47 +1,15 @@
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
-import client from "@service/client";
+import { useQuery } from "@apollo/client";
+import { GetVacantsDocument } from "@service/graphql";
 
-import { GetVacantsDocument, Vacant } from "@service/graphql";
 import VacantItem from "@components/Vacant/Item";
 
-export const getStaticProps: GetStaticProps<{
-  vacants: Vacant[];
-}> = async () => {
-  try {
-    const response = await client.query({
-      query: GetVacantsDocument,
-    });
-
-    if (!response.data.vacants?.status) {
-      return {
-        props: {
-          vacants: [],
-        },
-      };
-    }
-
-    const vacants = response.data.vacants?.vacants as Vacant[];
-
-    return {
-      props: {
-        vacants,
-      },
-    };
-  } catch (e) {
-    return {
-      props: {
-        vacants: [],
-      },
-    };
-  }
-};
-const Vacants = ({
-  vacants,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Vacants = () => {
+  const { data } = useQuery(GetVacantsDocument);
+  const vacants = data?.vacants?.vacants;
   return (
     <section className="bg-gray-100">
       <div className="container mx-auto flex flex-col items-center text-center py-32 gap-4">
-        {vacants.length == 0 ? (
+        {vacants?.length === 0 ? (
           <div className="flex flex-col justify-center items-center pt-10">
             <p className="text-paragraph text-4xl">
               No hay vacantes disponibles.
@@ -60,7 +28,8 @@ const Vacants = ({
             </p>
             <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {vacants?.map((vacant) => {
-                const { status, available } = vacant;
+                const { available, details } = vacant;
+                const { status } = details;
                 return status ? (
                   <div className={available ? "" : "opacity-50 cursor-default"}>
                     <VacantItem vacantItem={vacant} key={vacant.id} />

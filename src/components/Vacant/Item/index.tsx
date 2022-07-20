@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
-import { Vacant } from "@service/graphql";
+import { RrhhVacant } from "@service/graphql";
 
-const VacantItem = ({ vacantItem }: { vacantItem: Vacant }) => {
+const VacantItem = ({ vacantItem }: { vacantItem: RrhhVacant }) => {
   const { id, title, description, available } = vacantItem;
   return (
     <div className="card">
