@@ -58,7 +58,7 @@ const SalesForm = () => {
   });
 
   return (
-    <div className="mb-8 bg-white border border-gray-300 rounded-lg px-6 py-8">
+    <div className="mb-8 bg-white  border-gray-300 rounded-lg shadow-lg px-6 py-8">
       <form className="form" onSubmit={formik.handleSubmit}>
         {/* Nombre */}
         <div className="mb-4">
