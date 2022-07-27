@@ -1,7 +1,7 @@
 import SalesForm from "@components/Forms/Sales";
 import Socials from "@components/Socials";
 
-const Contact = () => {
+const Contacto = () => {
   return (
     <section className="container mx-auto min-h-[800px] mt-[110px] bg-white rounded-md p-10">
       <div className="flex flex-col justify-center items-center gap-6 lg:flex-row">
@@ -36,4 +36,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Contacto;

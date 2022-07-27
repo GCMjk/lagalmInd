@@ -4,14 +4,17 @@ import { BsArrowRight } from "react-icons/bs";
 
 import { RrhhVacant } from "@service/graphql";
 
-const VacantItem = ({ vacantItem }: { vacantItem: RrhhVacant }) => {
-  const { id, title, description, available } = vacantItem;
+const VacantItem = ({ item }: { item: Object }) => {
+  const vacant = item as RrhhVacant;
+  const { id, title, description, available, jobId } = vacant;
+  const { image } = jobId;
+  const imageJob = image as string;
   return (
     <div className="card">
       <div className="card-img">
         <Image
           className="card-img__img"
-          src="https://picsum.photos/id/4/600"
+          src={imageJob}
           layout="fill"
           alt={title}
         />
@@ -36,7 +39,7 @@ const VacantItem = ({ vacantItem }: { vacantItem: RrhhVacant }) => {
           {available ? (
             <>
               {" "}
-              <Link href={`vacant/${id}`}>
+              <Link href={`vacantes/${id}`}>
                 <a className="btn md:btn--md btn--hover">Enviar solicitud</a>
               </Link>
               <Link href={`/vacant`}>

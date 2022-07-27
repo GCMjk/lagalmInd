@@ -1,77 +1,33 @@
 import { useRouter } from "next/router";
+import { useQuery } from "@apollo/client";
+import { GetVacantDocument, RrhhVacant } from "@service/graphql";
+
 import VacantDetails from "@components/Vacant/Details";
-import {
-  GetVacantDocument,
-  GetVacantsDocument,
-  Vacant,
-  VacantFragment,
-} from "@service/graphql";
-import client from "@service/client";
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import RrhhForm from "@components/Forms/Rrhh";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await client.query({ query: GetVacantsDocument });
-  const data = response.data.vacants?.vacants;
-
-  const paths = data?.map((vacant, index) => {
-    if (vacant == null) {
-      throw new Error(
-        `An avocado entry with no data was found at index ${index}`
-      );
-    }
-
-    return { params: { id: vacant.id } };
-  });
-
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps: GetStaticProps<{
-  vacant: VacantFragment;
-}> = async ({ params }) => {
-  try {
-    const response = await client.query({
-      query: GetVacantDocument,
-      variables: { vacantId: params?.id as string },
-    });
-
-    if (!response.data.vacant?.status) {
-      return {
-        props: {
-          vacants: {},
-        },
-      };
-    }
-
-    const vacant = response.data.vacant.vacant as Vacant;
-
-    return {
-      props: {
-        vacant,
-      },
-    };
-  } catch (e) {
-    return {
-      props: {
-        vacants: {},
-      },
-    };
-  }
-};
-
-const Vacant = ({ vacant }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Vacant = () => {
   const {
     query: { id },
   } = useRouter();
+  const vacantId = id as string;
+  const { data } = useQuery(GetVacantDocument, {
+    variables: {
+      vacantId,
+    },
+  });
+  const vacant = data?.vacant?.vacant;
+  console.log(vacant);
 
   return (
     <>
-      <VacantDetails vacant={vacant} />
-      <RrhhForm idVacant={`${id}`} />
+      {vacant?.available ? (
+        <VacantDetails item={vacant} />
+      ) : (
+        <p>La vacante no esta disponible</p>
+      )}
+      <div className={vacant?.available ? "" : "opacity-50 cursor-default"}>
+        <RrhhForm vacantId={`${vacantId}`} />
+      </div>
     </>
   );
 };

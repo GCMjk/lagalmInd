@@ -21,11 +21,11 @@ export const navigation = [
   },
   {
     name: "nosotros",
-    href: "/about",
+    href: "/nosotros",
   },
   {
     name: "contacto",
-    href: "/contact",
+    href: "/contacto",
   },
 ];
 

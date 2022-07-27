@@ -3,7 +3,7 @@ import { GetVacantsDocument } from "@service/graphql";
 
 import VacantItem from "@components/Vacant/Item";
 
-const Vacants = () => {
+const Vacantes = () => {
   const { data } = useQuery(GetVacantsDocument);
   const vacants = data?.vacants?.vacants;
   return (
@@ -26,13 +26,13 @@ const Vacants = () => {
               nobis laborum magnam sunt minima tempora officiis doloribus natus
               rerum. Assumenda!
             </p>
-            <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6">
               {vacants?.map((vacant) => {
-                const { available, details } = vacant;
+                const { available, details, id } = vacant;
                 const { status } = details;
                 return status ? (
                   <div className={available ? "" : "opacity-50 cursor-default"}>
-                    <VacantItem vacantItem={vacant} key={vacant.id} />
+                    <VacantItem item={vacant} key={id} />
                   </div>
                 ) : null;
               })}
@@ -44,4 +44,4 @@ const Vacants = () => {
   );
 };
 
-export default Vacants;
+export default Vacantes;

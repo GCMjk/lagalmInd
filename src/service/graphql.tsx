@@ -116,18 +116,42 @@ export type Mutation = {
   addSupplier?: Maybe<PurchaseSupplierResult>;
   /** New vacant */
   addVacant?: Maybe<RrhhVacantResult>;
+  /** Delete contact */
+  deleteContact?: Maybe<RrhhContactResult>;
+  /** Delete job */
+  deleteJob?: Maybe<RrhhJobResult>;
   /** Delete permission */
   deletePermission?: Maybe<RrhhPermissionResult>;
+  /** Delete product */
+  deleteProduct?: Maybe<PurchaseProductResult>;
+  /** Delete requisition */
+  deleteRequisition?: Maybe<PurchaseRequisitionResult>;
+  /** Delete supplier */
+  deleteSupplier?: Maybe<PurchaseSupplierResult>;
   /** Delete user */
   deleteUser?: Maybe<ResultUser>;
+  /** Delete vacant */
+  deleteVacant?: Maybe<RrhhVacantResult>;
   /** Login user */
   login?: Maybe<ResultLogin>;
   /** register users */
   register?: Maybe<ResultUser>;
+  /** Update contact */
+  updateContact?: Maybe<RrhhContactResult>;
+  /** Update job */
+  updateJob?: Maybe<RrhhJobResult>;
   /** Update permission */
   updatePermission?: Maybe<RrhhPermissionResult>;
+  /** Update product */
+  updateProduct?: Maybe<PurchaseProductResult>;
+  /** Update requisition */
+  updateRequisition?: Maybe<PurchaseRequisitionResult>;
+  /** Update supplier */
+  updateSupplier?: Maybe<PurchaseSupplierResult>;
   /** Update user */
   updateUser?: Maybe<ResultUser>;
+  /** Update vacant */
+  updateVacant?: Maybe<RrhhVacantResult>;
 };
 
 
@@ -166,12 +190,42 @@ export type MutationAddVacantArgs = {
 };
 
 
+export type MutationDeleteContactArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteJobArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeletePermissionArgs = {
   id: Scalars['ID'];
 };
 
 
+export type MutationDeleteProductArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteRequisitionArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteSupplierArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationDeleteUserArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteVacantArgs = {
   id: Scalars['ID'];
 };
 
@@ -187,15 +241,51 @@ export type MutationRegisterArgs = {
 };
 
 
+export type MutationUpdateContactArgs = {
+  contact: RrhhContactInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateJobArgs = {
+  id: Scalars['ID'];
+  job: RrhhJobInput;
+};
+
+
 export type MutationUpdatePermissionArgs = {
   id: Scalars['ID'];
   permission: RrhhPermissionInput;
 };
 
 
+export type MutationUpdateProductArgs = {
+  id: Scalars['ID'];
+  product: PurchaseProductInput;
+};
+
+
+export type MutationUpdateRequisitionArgs = {
+  id: Scalars['ID'];
+  requisition: PurchaseRequisitionInput;
+};
+
+
+export type MutationUpdateSupplierArgs = {
+  id: Scalars['ID'];
+  supplier: PurchaseSupplierInput;
+};
+
+
 export type MutationUpdateUserArgs = {
   id: Scalars['ID'];
   user: UserInput;
+};
+
+
+export type MutationUpdateVacantArgs = {
+  id: Scalars['ID'];
+  vacant: UserInput;
 };
 
 /** Permission types */
@@ -635,8 +725,11 @@ export type RrhhContact = {
 export type RrhhContactInput = {
   /** Contact age */
   age?: InputMaybe<Scalars['String']>;
+  /** Contact status */
+  attended?: InputMaybe<Scalars['Boolean']>;
   /** Contact company */
   company?: InputMaybe<Scalars['String']>;
+  creationDate?: InputMaybe<Scalars['String']>;
   /** Contact email */
   email: Scalars['String'];
   /** Contact message */
@@ -1009,34 +1102,16 @@ export type UserInput = {
   role?: InputMaybe<Role>;
 };
 
-type Contact_RrhhContactRrhh_Fragment = { __typename?: 'RrhhContactRrhh', age?: string | null, name: string, email: string, phone: string, creationDate: string, vacantId?: { __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null };
-
-type Contact_RrhhContactSales_Fragment = { __typename?: 'RrhhContactSales', company?: string | null, workPosition?: ContactWorkPositionEnum | null, message?: string | null, name: string, email: string, phone: string, creationDate: string };
-
-export type ContactFragment = Contact_RrhhContactRrhh_Fragment | Contact_RrhhContactSales_Fragment;
+export type DetailsFragment = { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null };
 
 export type VacantFragment = { __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } };
-
-export type DetailsFragment = { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null };
 
 export type AddContactMutationVariables = Exact<{
   contact: RrhhContactInput;
 }>;
 
 
-export type AddContactMutation = { __typename?: 'Mutation', addContact?: { __typename?: 'RrhhContactResult', status: boolean, message: string, contact?: { __typename?: 'RrhhContactRrhh', age?: string | null, name: string, email: string, phone: string, creationDate: string, vacantId?: { __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | { __typename?: 'RrhhContactSales', company?: string | null, workPosition?: ContactWorkPositionEnum | null, message?: string | null, name: string, email: string, phone: string, creationDate: string } | null } | null };
-
-export type GetContactQueryVariables = Exact<{
-  contactId: Scalars['ID'];
-}>;
-
-
-export type GetContactQuery = { __typename?: 'Query', contact?: { __typename?: 'RrhhContactResult', status: boolean, message: string, contact?: { __typename?: 'RrhhContactRrhh', age?: string | null, name: string, email: string, phone: string, creationDate: string, vacantId?: { __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | { __typename?: 'RrhhContactSales', company?: string | null, workPosition?: ContactWorkPositionEnum | null, message?: string | null, name: string, email: string, phone: string, creationDate: string } | null } | null };
-
-export type GetContactsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetContactsQuery = { __typename?: 'Query', contacts?: { __typename?: 'RrhhContactsResult', status: boolean, message: string, contacts?: Array<{ __typename?: 'RrhhContactRrhh', age?: string | null, name: string, email: string, phone: string, creationDate: string, vacantId?: { __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | { __typename?: 'RrhhContactSales', company?: string | null, workPosition?: ContactWorkPositionEnum | null, message?: string | null, name: string, email: string, phone: string, creationDate: string }> | null } | null };
+export type AddContactMutation = { __typename?: 'Mutation', addContact?: { __typename?: 'RrhhContactResult', status: boolean, message: string } | null };
 
 export type GetVacantQueryVariables = Exact<{
   vacantId: Scalars['ID'];
@@ -1052,9 +1127,6 @@ export type GetVacantsQuery = { __typename?: 'Query', vacants?: { __typename?: '
 
 export const DetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Details"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Details"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"creatorUserId"}},{"kind":"Field","name":{"kind":"Name","value":"creatorUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creationDate"}},{"kind":"Field","name":{"kind":"Name","value":"modifierUserId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lastModification"}}]}}]} as unknown as DocumentNode<DetailsFragment, unknown>;
 export const VacantFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Vacant"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhVacant"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"jobId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"available"}},{"kind":"Field","name":{"kind":"Name","value":"details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Details"}}]}}]}},...DetailsFragmentDoc.definitions]} as unknown as DocumentNode<VacantFragment, unknown>;
-export const ContactFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Contact"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhContact"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhContactRrhh"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacantId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Vacant"}}]}},{"kind":"Field","name":{"kind":"Name","value":"age"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhContactSales"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"workPosition"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creationDate"}}]}},...VacantFragmentDoc.definitions]} as unknown as DocumentNode<ContactFragment, unknown>;
-export const AddContactDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddContact"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"contact"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhContactInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addContact"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"contact"},"value":{"kind":"Variable","name":{"kind":"Name","value":"contact"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"contact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Contact"}}]}}]}}]}},...ContactFragmentDoc.definitions]} as unknown as DocumentNode<AddContactMutation, AddContactMutationVariables>;
-export const GetContactDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContact"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"contactId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contact"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"contactId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"contact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Contact"}}]}}]}}]}},...ContactFragmentDoc.definitions]} as unknown as DocumentNode<GetContactQuery, GetContactQueryVariables>;
-export const GetContactsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"contacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Contact"}}]}}]}}]}},...ContactFragmentDoc.definitions]} as unknown as DocumentNode<GetContactsQuery, GetContactsQueryVariables>;
+export const AddContactDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddContact"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"contact"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhContactInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addContact"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"contact"},"value":{"kind":"Variable","name":{"kind":"Name","value":"contact"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<AddContactMutation, AddContactMutationVariables>;
 export const GetVacantDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVacant"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"vacantId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacant"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"vacantId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"vacant"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Vacant"}}]}}]}}]}},...VacantFragmentDoc.definitions]} as unknown as DocumentNode<GetVacantQuery, GetVacantQueryVariables>;
 export const GetVacantsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"vacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Vacant"}}]}}]}}]}},...VacantFragmentDoc.definitions]} as unknown as DocumentNode<GetVacantsQuery, GetVacantsQueryVariables>;

@@ -5,7 +5,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["picsum.photos"],
+    domains: ["picsum.photos", "img.freepik.com"],
   },
 };
 

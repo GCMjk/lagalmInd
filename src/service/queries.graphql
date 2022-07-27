@@ -1,19 +1,16 @@
-fragment Contact on RrhhContact {
-  name
-  email
-  phone
-  ... on RrhhContactRrhh {
-    vacantId {
-      ...Vacant
-    }
-    age
-  }
-  ... on RrhhContactSales {
-    company
-    workPosition
-    message
+fragment Details on Details {
+  status
+  creatorUserId
+  creatorUser {
+    name
+    email
   }
   creationDate
+  modifierUserId {
+    name
+    email
+  }
+  lastModification
 }
 
 fragment Vacant on RrhhVacant {
@@ -31,48 +28,10 @@ fragment Vacant on RrhhVacant {
   }
 }
 
-fragment Details on Details {
-  status
-  creatorUserId
-  creatorUser {
-    name
-    email
-  }
-  creationDate
-  modifierUserId {
-    name
-    email
-  }
-  lastModification
-}
-
 mutation AddContact($contact: RrhhContactInput!) {
   addContact(contact: $contact) {
     status
     message
-    contact {
-      ...Contact
-    }
-  }
-}
-
-query getContact($contactId: ID!) {
-  contact(id: $contactId) {
-    status
-    message
-    contact {
-      ...Contact
-    }
-  }
-}
-
-query getContacts {
-  contacts {
-    status
-    message
-    contacts {
-      ...Contact
-    }
   }
 }
 
