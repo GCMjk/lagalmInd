@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { GetVacantDocument, RrhhVacant } from "@service/graphql";
 
-import VacantDetails from "@components/Vacant/Details";
+import VacantDetails from "@components/Vacants/Details";
 import RrhhForm from "@components/Forms/Rrhh";
 
 const Vacant = () => {
