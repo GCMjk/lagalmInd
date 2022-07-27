@@ -21,7 +21,7 @@ const Footer = () => {
             })}
           </div>
           <Socials bg />
-          <div className="flex flex-col text-center text-paragraph opacity-60">
+          <div className="flex flex-col text-center opacity-60">
             <p className="text-[15px]">
               &copy; 2022 Lagalm Industrial S.A. de C.V.
             </p>

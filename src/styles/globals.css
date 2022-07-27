@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;0,800;1,200;1,400;1,600;1,800&family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @layer base {
   body {
-    @apply font-body text-paragraph leading-6 bg-gray-200;
+    @apply font-body text-paragraph;
   }
   h1,
   h2,
@@ -14,7 +14,10 @@
   h4,
   h5,
   h6 {
-    @apply text-white font-primary;
+    @apply font-primary;
+  }
+  span {
+    @apply font-span;
   }
   .form {
     @apply flex flex-col gap-y-4;
@@ -58,48 +61,48 @@
 
   /* CARD */
   .card {
-    @apply bg-white text-gray-700 w-full min-h-[10rem] shadow-lg rounded-md overflow-hidden;
+    @apply;
 
     /* Section img */
     &-img {
-      @apply relative w-full h-[200px] lg:h-[300px];
+      @apply;
 
       &__img {
-        @apply object-cover;
+        @apply;
       }
     }
 
     /* Section content */
     &-content {
-      @apply p-5 flex flex-col gap-2 lg:p-6;
+      @apply;
 
       /* badge */
       &__badge {
-        @apply font-body px-3 py-1 rounded-full tracking-wider uppercase text-xs bg-gray-100/80;
+        @apply;
 
         /* green */
         &--green {
-          @apply border border-green-300/60 text-green-500;
+          @apply;
         }
         /* red */
         &--red {
-          @apply border border-red-300/60 text-red-500;
+          @apply;
         }
       }
 
       /* title */
       &__title {
-        @apply text-paragraph font-body font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap;
+        @apply;
       }
 
       /* desciption */
       &__description {
-        @apply my-3 text-sm text-gray-600 line-clamp-2;
+        @apply;
       }
 
       /* buttons */
       &__buttons {
-        @apply flex justify-around gap-2;
+        @apply;
       }
     }
   }

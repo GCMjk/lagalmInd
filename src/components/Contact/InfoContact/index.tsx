@@ -11,9 +11,7 @@ const InfoContact = ({ title, contact, children }: PropsInfoContact) => {
         {children}
       </div>
       <div className="w-full">
-        <h4 className="mb-1 text-xl font-bold font-body text-gray-800">
-          {title}
-        </h4>
+        <h4 className="mb-1 text-xl font-bold text-gray-800">{title}</h4>
         {contact.map((item, i) => {
           return (
             <p className="text-base text-gray-500" key={i}>

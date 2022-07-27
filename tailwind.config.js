@@ -3,8 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      primary: "Righteous",
-      body: "Montserrat",
+      primary: ["Poppins", "sans-serif"],
+      body: ["Montserrat", "sans-serif"],
+      span: ["Raleway", "sans-serif"],
     },
     container: {
       padding: {

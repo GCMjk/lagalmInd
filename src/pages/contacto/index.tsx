@@ -17,7 +17,7 @@ const Contacto = () => {
               <span className="mb-4 block text-base font-semibold text-primary">
                 Contactanos
               </span>
-              <h2 className="font-body mb-6 text-[34px] font-bold uppercase lg:text-[30px] text-gray-700">
+              <h2 className="mb-6 text-[34px] font-bold uppercase lg:text-[30px] text-gray-700">
                 Rellena la informacion del formulario
               </h2>
               <p className="mb-9 text-base leading-relaxed text-body-color">
