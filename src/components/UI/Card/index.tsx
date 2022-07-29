@@ -1,10 +1,13 @@
 import Image from "next/image";
 import ButtonUI, { Style, Size } from "@components/UI/Button";
 
+export type Color = "Green" | "Red" | "Yellow" | "Blue";
+
 type PropsCardUI = {
+  disabled: boolean;
   image: string;
   badget?: {
-    color: string;
+    color: Color;
     text: string;
   };
   title: string;
@@ -17,9 +20,21 @@ type PropsCardUI = {
   };
 };
 
-const CardUI = ({ image, badget, title, description, button }: PropsCardUI) => {
+const CardUI = ({
+  disabled,
+  image,
+  badget,
+  title,
+  description,
+  button,
+}: PropsCardUI) => {
   return (
-    <div className="bg-white text-gray-700 w-full min-h-[10rem] shadow-lg rounded-md overflow-hidden">
+    <div
+      className={
+        "bg-white text-gray-700 w-full min-h-[10rem] shadow-lg rounded-md overflow-hidden" +
+        (disabled ? "" : " opacity-50 cursor-default")
+      }
+    >
       <div className="relative w-full h-[200px] lg:h-[300px]">
         <Image
           className="object-cover"
@@ -28,11 +43,22 @@ const CardUI = ({ image, badget, title, description, button }: PropsCardUI) => {
           alt={title}
         />
       </div>
-      <div className="p-5 flex flex-col gap-2 lg:p-6">
+      <div className="p-5 flex flex-col gap-5">
         {badget ? (
-          <div className="mb-2">
+          <div>
             <span
-              className={`px-3 py-1 rounded-full tracking-wider uppercase text-xs bg-gray-100/60 border border-${badget?.color}-300 text-${badget?.color}-500`}
+              className={
+                "px-3 py-1 rounded-full tracking-wider uppercase text-xs bg-gray-100/60 border " +
+                (badget.color === "Green"
+                  ? " text-green-500 border-green-300"
+                  : badget.color === "Red"
+                  ? " text-red-500 border-red-300"
+                  : badget.color === "Yellow"
+                  ? " text-yellow-500 border-yellow-300"
+                  : badget.color === "Blue"
+                  ? " text-blue-500 border-blue-300"
+                  : "")
+              }
             >
               {badget?.text}
             </span>
@@ -42,7 +68,9 @@ const CardUI = ({ image, badget, title, description, button }: PropsCardUI) => {
         <h2 className="font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap">
           {title}
         </h2>
-        <p className="my-3 text-sm text-gray-600 line-clamp-2">{description}</p>
+        <p className="text-base text-gray-600 line-clamp-2 h-12">
+          {description}
+        </p>
         {button ? (
           <div className="flex justify-around gap-2">
             <ButtonUI

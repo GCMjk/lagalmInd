@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { GetVacantDocument, RrhhVacant } from "@service/graphql";
 
-import VacantDetails from "@components/Vacants/Details";
 import RrhhForm from "@components/Forms/Rrhh";
 
 const Vacant = () => {
@@ -16,15 +15,10 @@ const Vacant = () => {
     },
   });
   const vacant = data?.vacant?.vacant;
-  console.log(vacant);
 
   return (
     <>
-      {vacant?.available ? (
-        <VacantDetails item={vacant} />
-      ) : (
-        <p>La vacante no esta disponible</p>
-      )}
+      {vacant?.available ? <div></div> : <p>La vacante no esta disponible</p>}
       <div className={vacant?.available ? "" : "opacity-50 cursor-default"}>
         <RrhhForm vacantId={`${vacantId}`} />
       </div>
