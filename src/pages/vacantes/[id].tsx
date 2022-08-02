@@ -2,9 +2,10 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { GetVacantDocument, RrhhVacant } from "@service/graphql";
 
-import RrhhForm from "@components/Forms/Rrhh";
+import Vacant from "@components/Vacants/Vacant";
+import ContainerUI from "@components/UI/Container/intex";
 
-const Vacant = () => {
+const Vacante = () => {
   const {
     query: { id },
   } = useRouter();
@@ -14,16 +15,20 @@ const Vacant = () => {
       vacantId,
     },
   });
-  const vacant = data?.vacant?.vacant;
+  const vacant = data?.vacant?.vacant as RrhhVacant;
 
   return (
-    <>
-      {vacant?.available ? <div></div> : <p>La vacante no esta disponible</p>}
-      <div className={vacant?.available ? "" : "opacity-50 cursor-default"}>
-        <RrhhForm vacantId={`${vacantId}`} />
-      </div>
-    </>
+    <ContainerUI>
+      {vacant?.details.status ? (
+        <Vacant vacant={vacant || {}} />
+      ) : (
+        <div className="text-center space-y-2">
+          <h1 className="text-4xl">No existe la vacante</h1>
+          <p className="text-xl">Intenta buscando de nuevo</p>
+        </div>
+      )}
+    </ContainerUI>
   );
 };
 
-export default Vacant;
+export default Vacante;

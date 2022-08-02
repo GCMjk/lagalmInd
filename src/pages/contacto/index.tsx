@@ -1,4 +1,4 @@
-import InfoContact from "@components/Contact/InfoContact";
+import IconListUI from "@components/UI/IconList";
 import SalesForm from "@components/Contact/Sales";
 import ContainerUI from "@components/UI/Container/intex";
 
@@ -22,28 +22,26 @@ const Contacto = () => {
               o tambien puedes encontrarnos en los siguientes medios
             </p>
 
-            <InfoContact
+            <IconListUI
               title="Dirección"
-              contact={[
-                "Insurgentes #23, Col. Sta. Maria Cuautepec, 54949 Méx.",
-              ]}
+              list={["Insurgentes #23, Col. Sta. Maria Cuautepec, 54949 Méx."]}
             >
               <OfficeBuildingIcon className="h-10" />
-            </InfoContact>
+            </IconListUI>
 
-            <InfoContact
+            <IconListUI
               title="Telefono"
-              contact={["55 4422-2211", "55 0101-0202"]}
+              list={["55 4422-2211", "55 0101-0202"]}
             >
               <PhoneIcon className="h-10" />
-            </InfoContact>
+            </IconListUI>
 
-            <InfoContact
+            <IconListUI
               title="Correo"
-              contact={["contacto@lagalm.mx", "ventas@lagalm.mx"]}
+              list={["contacto@lagalm.mx", "ventas@lagalm.mx"]}
             >
               <InboxIcon className="h-10" />
-            </InfoContact>
+            </IconListUI>
           </div>
         </div>
         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">

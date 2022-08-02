@@ -21,8 +21,17 @@ fragment Vacant on RrhhVacant {
     image
   }
   title
-  description
-  available
+  description {
+    description
+    benefits
+    time
+    salary
+  }
+  available {
+    date
+    candidates
+    available
+  }
   details {
     ...Details
   }

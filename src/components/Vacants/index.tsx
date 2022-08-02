@@ -26,9 +26,8 @@ const Vacants = ({ vacants }: { vacants?: RrhhVacant[] }) => {
         ({
           id,
           title,
-          description,
-          available,
-          jobId: { image },
+          available: { available },
+          jobId: { description, image },
           details: { status },
         }) =>
           status ? (
@@ -41,7 +40,7 @@ const Vacants = ({ vacants }: { vacants?: RrhhVacant[] }) => {
                 text: available ? "Disponible" : "No disponible",
               }}
               title={title}
-              description={description}
+              description={description as string}
               button={{
                 text: available ? "Enviar solicitud" : "No disponible",
                 style: available ? "Basic" : "White",

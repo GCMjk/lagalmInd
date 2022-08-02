@@ -912,9 +912,9 @@ export type RrhhPermissionsResult = Result & {
 export type RrhhVacant = {
   __typename?: 'RrhhVacant';
   /** Vacant available */
-  available: Scalars['Boolean'];
-  /** Vacant name */
-  description: Scalars['String'];
+  available: VacantAvailable;
+  /** Vacant description */
+  description: VacantDescription;
   /** Item details */
   details: Details;
   /** Unique identifier */
@@ -927,8 +927,10 @@ export type RrhhVacant = {
 
 /** Vacant input */
 export type RrhhVacantInput = {
+  /** Vacant available */
+  available: VacantAvailableInput;
   /** Vacant description */
-  description: Scalars['String'];
+  description: VacantDescriptionInput;
   /** Item creator and modifier details */
   details?: InputMaybe<DetailsInput>;
   /** Unique identifier of a Job */
@@ -1102,9 +1104,37 @@ export type UserInput = {
   role?: InputMaybe<Role>;
 };
 
+export type VacantAvailable = {
+  __typename?: 'VacantAvailable';
+  available?: Maybe<Scalars['Boolean']>;
+  candidates: Scalars['Int'];
+  date: Scalars['String'];
+};
+
+export type VacantAvailableInput = {
+  available?: InputMaybe<Scalars['Boolean']>;
+  candidates: Scalars['Int'];
+  date: Scalars['String'];
+};
+
+export type VacantDescription = {
+  __typename?: 'VacantDescription';
+  benefits?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description: Array<Maybe<Scalars['String']>>;
+  salary?: Maybe<Scalars['Int']>;
+  time?: Maybe<Scalars['Int']>;
+};
+
+export type VacantDescriptionInput = {
+  benefits?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  description: Array<Scalars['String']>;
+  salary?: InputMaybe<Scalars['Int']>;
+  time?: InputMaybe<Scalars['Int']>;
+};
+
 export type DetailsFragment = { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null };
 
-export type VacantFragment = { __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } };
+export type VacantFragment = { __typename?: 'RrhhVacant', id?: string | null, title: string, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, description: { __typename?: 'VacantDescription', description: Array<string | null>, benefits?: Array<string | null> | null, time?: number | null, salary?: number | null }, available: { __typename?: 'VacantAvailable', date: string, candidates: number, available?: boolean | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } };
 
 export type AddContactMutationVariables = Exact<{
   contact: RrhhContactInput;
@@ -1118,15 +1148,15 @@ export type GetVacantQueryVariables = Exact<{
 }>;
 
 
-export type GetVacantQuery = { __typename?: 'Query', vacant?: { __typename?: 'RrhhVacantResult', status: boolean, message: string, vacant?: { __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
+export type GetVacantQuery = { __typename?: 'Query', vacant?: { __typename?: 'RrhhVacantResult', status: boolean, message: string, vacant?: { __typename?: 'RrhhVacant', id?: string | null, title: string, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, description: { __typename?: 'VacantDescription', description: Array<string | null>, benefits?: Array<string | null> | null, time?: number | null, salary?: number | null }, available: { __typename?: 'VacantAvailable', date: string, candidates: number, available?: boolean | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
 
 export type GetVacantsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetVacantsQuery = { __typename?: 'Query', vacants?: { __typename?: 'RrhhVacantsResult', status: boolean, message: string, vacants?: Array<{ __typename?: 'RrhhVacant', id?: string | null, title: string, description: string, available: boolean, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } }> | null } | null };
+export type GetVacantsQuery = { __typename?: 'Query', vacants?: { __typename?: 'RrhhVacantsResult', status: boolean, message: string, vacants?: Array<{ __typename?: 'RrhhVacant', id?: string | null, title: string, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, description: { __typename?: 'VacantDescription', description: Array<string | null>, benefits?: Array<string | null> | null, time?: number | null, salary?: number | null }, available: { __typename?: 'VacantAvailable', date: string, candidates: number, available?: boolean | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } }> | null } | null };
 
 export const DetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Details"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Details"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"creatorUserId"}},{"kind":"Field","name":{"kind":"Name","value":"creatorUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creationDate"}},{"kind":"Field","name":{"kind":"Name","value":"modifierUserId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lastModification"}}]}}]} as unknown as DocumentNode<DetailsFragment, unknown>;
-export const VacantFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Vacant"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhVacant"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"jobId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"available"}},{"kind":"Field","name":{"kind":"Name","value":"details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Details"}}]}}]}},...DetailsFragmentDoc.definitions]} as unknown as DocumentNode<VacantFragment, unknown>;
+export const VacantFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Vacant"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhVacant"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"jobId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"benefits"}},{"kind":"Field","name":{"kind":"Name","value":"time"}},{"kind":"Field","name":{"kind":"Name","value":"salary"}}]}},{"kind":"Field","name":{"kind":"Name","value":"available"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"candidates"}},{"kind":"Field","name":{"kind":"Name","value":"available"}}]}},{"kind":"Field","name":{"kind":"Name","value":"details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Details"}}]}}]}},...DetailsFragmentDoc.definitions]} as unknown as DocumentNode<VacantFragment, unknown>;
 export const AddContactDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddContact"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"contact"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhContactInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addContact"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"contact"},"value":{"kind":"Variable","name":{"kind":"Name","value":"contact"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<AddContactMutation, AddContactMutationVariables>;
 export const GetVacantDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVacant"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"vacantId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacant"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"vacantId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"vacant"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Vacant"}}]}}]}}]}},...VacantFragmentDoc.definitions]} as unknown as DocumentNode<GetVacantQuery, GetVacantQueryVariables>;
 export const GetVacantsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getVacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"vacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Vacant"}}]}}]}}]}},...VacantFragmentDoc.definitions]} as unknown as DocumentNode<GetVacantsQuery, GetVacantsQueryVariables>;
