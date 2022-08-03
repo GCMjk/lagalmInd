@@ -45,7 +45,7 @@ const Vacants = ({ vacants }: { vacants?: RrhhVacant[] }) => {
                 text: available ? "Enviar solicitud" : "No disponible",
                 style: available ? "Basic" : "White",
                 size: "Large",
-                link: `vacantes/${id}`,
+                link: available ? `vacantes/${id}` : "vacantes",
               }}
             />
           ) : null

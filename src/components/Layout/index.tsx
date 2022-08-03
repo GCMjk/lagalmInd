@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Header from "@components/Header";
-import Footer from "@components/Footer";
+import Header from "@components/Web/Header";
+import Footer from "@components/Web/Footer";
 
 import Logo from "@assets/img/logo.svg";
 

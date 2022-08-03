@@ -1,5 +1,5 @@
-import Hero from "@components/Hero";
-import Customers from "@components/Customers";
+import Hero from "@components/Web/Home/Hero";
+import Customers from "@components/Web/Home/Customers";
 
 const Home = () => {
   return (

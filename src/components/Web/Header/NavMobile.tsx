@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { XIcon, MenuAlt3Icon } from "@heroicons/react/outline";
 
-import Translate from "@components/Header/Translate";
+import Translate from "@components/Web/Header/Translate";
 import Socials from "@components/Socials";
 import { navigation } from "@service/data";
 

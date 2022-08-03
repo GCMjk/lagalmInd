@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@assets/img/logo.svg";
 
-import Nav from "@components/Header/Nav";
-import NavMobile from "@components/Header/NavMobile";
-import Translate from "@components/Header/Translate";
+import Nav from "@components/Web/Header/Nav";
+import NavMobile from "@components/Web/Header/NavMobile";
+import Translate from "@components/Web/Header/Translate";
 
 const Header = () => {
   const [bg, setBg] = useState(false);

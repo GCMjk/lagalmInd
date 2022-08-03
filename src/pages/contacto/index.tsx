@@ -1,5 +1,5 @@
 import IconListUI from "@components/UI/IconList";
-import SalesForm from "@components/Contact/Sales";
+import SalesForm from "@components/Web/Contact/Sales";
 import ContainerUI from "@components/UI/Container/intex";
 
 import {
@@ -25,23 +25,20 @@ const Contacto = () => {
             <IconListUI
               title="Dirección"
               list={["Insurgentes #23, Col. Sta. Maria Cuautepec, 54949 Méx."]}
-            >
-              <OfficeBuildingIcon className="h-10" />
-            </IconListUI>
+              Icon={OfficeBuildingIcon}
+            />
 
             <IconListUI
               title="Telefono"
               list={["55 4422-2211", "55 0101-0202"]}
-            >
-              <PhoneIcon className="h-10" />
-            </IconListUI>
+              Icon={PhoneIcon}
+            />
 
             <IconListUI
               title="Correo"
               list={["contacto@lagalm.mx", "ventas@lagalm.mx"]}
-            >
-              <InboxIcon className="h-10" />
-            </IconListUI>
+              Icon={InboxIcon}
+            />
           </div>
         </div>
         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
