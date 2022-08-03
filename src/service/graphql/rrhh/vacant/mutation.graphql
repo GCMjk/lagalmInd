@@ -1,0 +1,26 @@
+mutation NewRrhhVacant($vacant: RrhhVacantInput!) {
+  addVacant(vacant: $vacant) {
+    status
+    message
+    vacant {
+      ...RrhhVacantFragment
+    }
+  }
+}
+
+mutation UpdateRrhhVacant($updateVacantId: ID!, $vacant: UserInput!) {
+  updateVacant(id: $updateVacantId, vacant: $vacant) {
+    status
+    message
+    vacant {
+      ...RrhhVacantFragment
+    }
+  }
+}
+
+mutation DeleteRrhhVacant($deleteVacantId: ID!) {
+  deleteVacant(id: $deleteVacantId) {
+    status
+    message
+  }
+}

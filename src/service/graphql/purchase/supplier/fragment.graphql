@@ -1,0 +1,47 @@
+fragment PurchaseSupplierFragment on PurchaseSupplier {
+  id
+  name
+  logo
+  infoContact {
+    email
+    phone
+    web
+    personalizedContact {
+      title
+      name
+      position
+      email
+      phone
+    }
+  }
+  address {
+    street
+    number {
+      interior
+      exterior
+    }
+    colony
+    municipality
+    state
+    country
+    zipCode
+    streets {
+      a
+      b
+    }
+  }
+  taxes {
+    type
+    rfc
+  }
+  deliveryTime
+  passed
+  classification
+  productId {
+    ...PurchaseProductFragment
+    ...PurchaseProductServiceFragment
+  }
+  details {
+    ...DetailsFragment
+  }
+}

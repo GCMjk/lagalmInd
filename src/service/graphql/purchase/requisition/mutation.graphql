@@ -1,0 +1,29 @@
+mutation NewPurchaseRequisition($requisition: PurchaseRequisitionInput!) {
+  addRequisition(requisition: $requisition) {
+    status
+    message
+    requisition {
+      ...PurchaseRequisitionFragment
+    }
+  }
+}
+
+mutation UpdatePurchaseRequisition(
+  $updateRequisitionId: ID!
+  $requisition: PurchaseRequisitionInput!
+) {
+  updateRequisition(id: $updateRequisitionId, requisition: $requisition) {
+    status
+    message
+    requisition {
+      ...PurchaseRequisitionFragment
+    }
+  }
+}
+
+mutation DeletePurchaseSupplier($deleteSupplierId: ID!) {
+  deleteSupplier(id: $deleteSupplierId) {
+    status
+    message
+  }
+}

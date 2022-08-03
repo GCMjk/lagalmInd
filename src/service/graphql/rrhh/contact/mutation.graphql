@@ -1,0 +1,28 @@
+mutation NewRrhhContact($contact: RrhhContactInput!) {
+  addContact(contact: $contact) {
+    status
+    message
+    contact {
+      ...RrhhContactRrhhFragment
+      ...RrhhContactSalesFragment
+    }
+  }
+}
+
+mutation UpdateRrhhContact($updateContactId: ID!, $contact: RrhhContactInput!) {
+  updateContact(id: $updateContactId, contact: $contact) {
+    status
+    message
+    contact {
+      ...RrhhContactRrhhFragment
+      ...RrhhContactSalesFragment
+    }
+  }
+}
+
+mutation DeleteRrhhContact($deleteContactId: ID!) {
+  deleteContact(id: $deleteContactId) {
+    status
+    message
+  }
+}

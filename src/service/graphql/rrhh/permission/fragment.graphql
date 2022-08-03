@@ -1,0 +1,14 @@
+fragment RrhhPermissionFragment on RrhhPermission {
+  id
+  type
+  reason
+  userId {
+    ...UserFragment
+  }
+  from
+  to
+  authorization
+  details {
+    ...DetailsFragment
+  }
+}

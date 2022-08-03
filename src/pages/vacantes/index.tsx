@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { GetVacantsDocument, RrhhVacant } from "@service/graphql";
+import { GetRrhhVacantsDocument, RrhhVacant } from "@service/graphql";
 
 import ContainerUI from "@components/UI/Container/intex";
 import Vacants from "@components/Web/Vacants";
 
 const Vacantes = () => {
-  const { data } = useQuery(GetVacantsDocument);
+  const { data } = useQuery(GetRrhhVacantsDocument);
   const vacants = data?.vacants?.vacants as RrhhVacant[];
 
   return (

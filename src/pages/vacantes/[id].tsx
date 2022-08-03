@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { GetVacantDocument, RrhhVacant } from "@service/graphql";
+import { GetRrhhVacantDocument, RrhhVacant } from "@service/graphql";
 
 import Vacant from "@components/Web/Vacants/Vacant";
 import ContainerUI from "@components/UI/Container/intex";
@@ -10,7 +10,7 @@ const Vacante = () => {
     query: { id },
   } = useRouter();
   const vacantId = id as string;
-  const { data } = useQuery(GetVacantDocument, {
+  const { data } = useQuery(GetRrhhVacantDocument, {
     variables: {
       vacantId,
     },

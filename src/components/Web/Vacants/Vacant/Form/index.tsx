@@ -2,10 +2,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { useMutation } from "@apollo/client";
-import { AddContactDocument } from "@service/graphql";
+import { NewRrhhContactDocument } from "@service/graphql";
 
 const RrhhForm = ({ vacantId }: { vacantId: string }) => {
-  const [newContactRrhh] = useMutation(AddContactDocument);
+  const [newContactRrhh] = useMutation(NewRrhhContactDocument);
 
   const formik = useFormik({
     initialValues: {

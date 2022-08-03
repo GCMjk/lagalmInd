@@ -1,0 +1,25 @@
+fragment PurchaseProductFragment on PurchaseProduct {
+  id
+  name
+  description
+  brand
+  audited
+  details {
+    ...DetailsFragment
+  }
+}
+
+fragment PurchaseProductServiceFragment on PurchaseProductService {
+  id
+  name
+  description
+  typeService {
+    type
+    description
+  }
+  brand
+  audited
+  details {
+    ...DetailsFragment
+  }
+}

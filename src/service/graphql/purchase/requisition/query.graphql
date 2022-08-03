@@ -1,0 +1,19 @@
+query GetPurchaseRequisition($requisitionId: ID!) {
+  requisition(id: $requisitionId) {
+    status
+    message
+    requisition {
+      ...PurchaseRequisitionFragment
+    }
+  }
+}
+
+query GetPurchaseRequisitions {
+  requisitions {
+    status
+    message
+    requisitions {
+      ...PurchaseRequisitionFragment
+    }
+  }
+}

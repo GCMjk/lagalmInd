@@ -1,0 +1,31 @@
+mutation NewPurchaseProduct($product: PurchaseProductInput!) {
+  addProduct(product: $product) {
+    status
+    message
+    product {
+      ...PurchaseProductFragment
+      ...PurchaseProductServiceFragment
+    }
+  }
+}
+
+mutation UpdatePurchaseProduct(
+  $updateProductId: ID!
+  $updateProductProduct: PurchaseProductInput!
+) {
+  updateProduct(id: $updateProductId, product: $updateProductProduct) {
+    status
+    message
+    product {
+      ...PurchaseProductFragment
+      ...PurchaseProductServiceFragment
+    }
+  }
+}
+
+mutation DeletePurchaseProduct($deleteProductId: ID!) {
+  deleteProduct(id: $deleteProductId) {
+    status
+    message
+  }
+}

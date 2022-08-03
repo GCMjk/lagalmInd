@@ -1,0 +1,24 @@
+fragment RrhhContactRrhhFragment on RrhhContactRrhh {
+  id
+  name
+  email
+  phone
+  attended
+  vacantId {
+    ...RrhhVacantFragment
+  }
+  age
+  creationDate
+}
+
+fragment RrhhContactSalesFragment on RrhhContactSales {
+  id
+  name
+  email
+  phone
+  attended
+  company
+  workPosition
+  message
+  creationDate
+}

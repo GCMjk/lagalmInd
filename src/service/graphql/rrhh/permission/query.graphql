@@ -1,0 +1,18 @@
+query GetRrhPermission($permissionId: ID!) {
+  permission(id: $permissionId) {
+    status
+    message
+    permission {
+      ...RrhhPermissionFragment
+    }
+  }
+}
+query GetRrhhPermissions {
+  permissions {
+    status
+    message
+    permissions {
+      ...RrhhPermissionFragment
+    }
+  }
+}

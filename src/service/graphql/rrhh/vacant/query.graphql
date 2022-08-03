@@ -1,0 +1,19 @@
+query GetRrhhVacant($vacantId: ID!) {
+  vacant(id: $vacantId) {
+    status
+    message
+    vacant {
+      ...RrhhVacantFragment
+    }
+  }
+}
+
+query GetRrhhVacants {
+  vacants {
+    status
+    message
+    vacants {
+      ...RrhhVacantFragment
+    }
+  }
+}

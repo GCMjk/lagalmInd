@@ -1,0 +1,9 @@
+fragment RrhhJobFragment on RrhhJob {
+  id
+  title
+  description
+  image
+  details {
+    ...DetailsFragment
+  }
+}

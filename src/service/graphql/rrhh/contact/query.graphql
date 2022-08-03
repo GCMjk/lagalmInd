@@ -1,0 +1,21 @@
+query GetRrhhContact($contactId: ID!) {
+  contact(id: $contactId) {
+    status
+    message
+    contact {
+      ...RrhhContactRrhhFragment
+      ...RrhhContactSalesFragment
+    }
+  }
+}
+
+query GetRrhhContacts {
+  contacts {
+    status
+    message
+    contacts {
+      ...RrhhContactRrhhFragment
+      ...RrhhContactSalesFragment
+    }
+  }
+}

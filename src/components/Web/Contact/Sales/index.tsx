@@ -2,7 +2,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { useMutation } from "@apollo/client";
-import { AddContactDocument, ContactWorkPositionEnum } from "@service/graphql";
+import {
+  NewRrhhContactDocument,
+  ContactWorkPositionEnum,
+} from "@service/graphql";
 
 const enumWorkPosition = Object.keys(ContactWorkPositionEnum).map((name) => {
   return {
@@ -12,7 +15,7 @@ const enumWorkPosition = Object.keys(ContactWorkPositionEnum).map((name) => {
 });
 
 const SalesForm = () => {
-  const [newContactSales] = useMutation(AddContactDocument);
+  const [newContactSales] = useMutation(NewRrhhContactDocument);
 
   const formik = useFormik({
     initialValues: {

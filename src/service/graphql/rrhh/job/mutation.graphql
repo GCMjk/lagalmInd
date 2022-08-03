@@ -1,0 +1,26 @@
+mutation NewRrhhJob($job: RrhhJobInput!) {
+  addJob(job: $job) {
+    status
+    message
+    job {
+      ...RrhhJobFragment
+    }
+  }
+}
+
+mutation UpdateRrhhJob($updateJobId: ID!, $job: RrhhJobInput!) {
+  updateJob(id: $updateJobId, job: $job) {
+    status
+    message
+    job {
+      ...RrhhJobFragment
+    }
+  }
+}
+
+mutation DeleteRrhhJob($deleteJobId: ID!) {
+  deleteJob(id: $deleteJobId) {
+    status
+    message
+  }
+}

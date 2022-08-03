@@ -1,0 +1,19 @@
+query GetRrhhJob($jobId: ID!) {
+  job(id: $jobId) {
+    status
+    message
+    job {
+      ...RrhhJobFragment
+    }
+  }
+}
+
+query GetRrhhJobs {
+  jobs {
+    status
+    message
+    jobs {
+      ...RrhhJobFragment
+    }
+  }
+}

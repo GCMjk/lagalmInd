@@ -1,0 +1,20 @@
+query getPurchaseProduct($productId: ID!) {
+  product(id: $productId) {
+    status
+    message
+    product {
+      ...PurchaseProductFragment
+      ...PurchaseProductServiceFragment
+    }
+  }
+}
+query getPurchaseProducts {
+  products {
+    status
+    message
+    products {
+      ...PurchaseProductFragment
+      ...PurchaseProductServiceFragment
+    }
+  }
+}

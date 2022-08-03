@@ -1,0 +1,29 @@
+mutation NewPurchaseSupplier($supplier: PurchaseSupplierInput!) {
+  addSupplier(supplier: $supplier) {
+    status
+    message
+    supplier {
+      ...PurchaseSupplierFragment
+    }
+  }
+}
+
+mutation UpdatePurchaseSupplier(
+  $updateSupplierId: ID!
+  $supplier: PurchaseSupplierInput!
+) {
+  updateSupplier(id: $updateSupplierId, supplier: $supplier) {
+    status
+    message
+    supplier {
+      ...PurchaseSupplierFragment
+    }
+  }
+}
+
+mutation DeletePurchaseSupplier($deleteSupplierId: ID!) {
+  deleteSupplier(id: $deleteSupplierId) {
+    status
+    message
+  }
+}

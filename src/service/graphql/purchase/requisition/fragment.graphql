@@ -1,0 +1,17 @@
+fragment PurchaseRequisitionFragment on PurchaseRequisition {
+  id
+  product {
+    productId {
+      ...PurchaseProductFragment
+    }
+    type
+    number
+  }
+  userId {
+    ...UserFragment
+  }
+  autorization
+  details {
+    ...DetailsFragment
+  }
+}

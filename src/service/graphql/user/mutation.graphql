@@ -1,0 +1,34 @@
+mutation UserLogin($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    status
+    message
+    token
+  }
+}
+
+mutation NewUser($user: UserInput!) {
+  register(user: $user) {
+    status
+    message
+    users {
+      ...UserFragment
+    }
+  }
+}
+
+mutation UpdateUser($updateUserId: ID!, $user: UserInput!) {
+  updateUser(id: $updateUserId, user: $user) {
+    status
+    message
+    users {
+      ...UserFragment
+    }
+  }
+}
+
+mutation DeleteUser($deleteUserId: ID!) {
+  deleteUser(id: $deleteUserId) {
+    status
+    message
+  }
+}

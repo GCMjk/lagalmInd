@@ -1,0 +1,18 @@
+query GetPurchaseSupplier($supplierId: ID!) {
+  supplier(id: $supplierId) {
+    status
+    message
+    supplier {
+      ...PurchaseSupplierFragment
+    }
+  }
+}
+query GetPurchaseSuppliers {
+  suppliers {
+    status
+    message
+    suppliers {
+      ...PurchaseSupplierFragment
+    }
+  }
+}

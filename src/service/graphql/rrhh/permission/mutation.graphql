@@ -1,0 +1,29 @@
+mutation NewRrhhPermission($permission: RrhhPermissionInput!) {
+  addPermission(permission: $permission) {
+    status
+    message
+    permission {
+      ...RrhhPermissionFragment
+    }
+  }
+}
+
+mutation UpdateRrhhPermission(
+  $updatePermissionId: ID!
+  $permission: RrhhPermissionInput!
+) {
+  updatePermission(id: $updatePermissionId, permission: $permission) {
+    status
+    message
+    permission {
+      ...RrhhPermissionFragment
+    }
+  }
+}
+
+mutation DeleteRrhhPermission($deletePermissionId: ID!) {
+  deletePermission(id: $deletePermissionId) {
+    status
+    message
+  }
+}
