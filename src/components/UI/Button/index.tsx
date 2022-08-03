@@ -7,7 +7,7 @@ type PropsButtonUI = {
   linkButton?: string;
   style?: Style;
   size: Size;
-  children: JSX.Element | string;
+  children: string;
 };
 
 const ButtonUI = ({

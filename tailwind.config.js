@@ -20,6 +20,9 @@ module.exports = {
       xl: "1280px",
     },
     extend: {
+      spacing: {
+        18: "4.5rem",
+      },
       colors: {
         primary: "#218BBD",
         secondary: "#01B1E2",
@@ -29,6 +32,12 @@ module.exports = {
           hover: "#E63271",
         },
         paragraph: "#003F54",
+        login: {
+          color: "#002531",
+        },
+      },
+      backgroundImage: {
+        login: "url('https://picsum.photos/400/400/?random')",
       },
     },
   },

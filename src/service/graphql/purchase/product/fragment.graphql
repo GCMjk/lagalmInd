@@ -5,7 +5,16 @@ fragment PurchaseProductFragment on PurchaseProduct {
   brand
   audited
   details {
-    ...DetailsFragment
+    status
+    creatorUserId
+    creatorUser {
+      name
+    }
+    creationDate
+    modifierUserId {
+      name
+    }
+    lastModification
   }
 }
 
@@ -20,6 +29,15 @@ fragment PurchaseProductServiceFragment on PurchaseProductService {
   brand
   audited
   details {
-    ...DetailsFragment
+    status
+    creatorUserId
+    creatorUser {
+      name
+    }
+    creationDate
+    modifierUserId {
+      name
+    }
+    lastModification
   }
 }
