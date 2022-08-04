@@ -1,6 +1,4 @@
-import Image from 'next/image';
-
-import DetailUser from '@components/DetailUser';
+import Image from "next/image";
 
 const Usuario = () => {
   return (

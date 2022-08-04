@@ -7,8 +7,6 @@ import Footer from "@components/Web/Footer";
 import Navbar from "@components/App/Navbar";
 import Sidebar from "@components/App/Sidebar";
 
-import Logo from "@assets/img/logo.svg";
-
 type LayoutProps = {
   children?: React.ReactNode;
 };
@@ -23,9 +21,9 @@ const Layout = ({ children }: LayoutProps) => {
           name="description"
           content="Lagalm, soluciones integrales en inyección de plástico."
         />
-        <link rel="shortcut icon" href={Logo} type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/svg" />
       </Head>
-      {router.pathname.includes("/app") ? (
+      {router.pathname !== "/app/login" && router.pathname.includes("/app") ? (
         <div className="flex bg-white">
           <Sidebar />
           <div className="flex h-screen flex-1 flex-col">

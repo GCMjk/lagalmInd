@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@assets/img/logo.svg";
+import Logo from "@assets/img/logo.png";
 
 import Nav from "@components/Web/Header/Nav";
 import NavMobile from "@components/Web/Header/NavMobile";

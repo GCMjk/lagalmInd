@@ -1,10 +1,7 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useQuery } from "@apollo/client";
-import {
-  GetPurchaseSupplierDocument,
-  ProductTypeService,
-} from "@service/graphql";
+import { GetPurchaseSupplierDocument } from "@service/graphql";
 
 import { MailIcon, PhoneIcon, GlobeIcon } from "@heroicons/react/solid";
 
@@ -96,7 +93,13 @@ const Proveedor = () => {
           </div>
         </div>
         <div>
-          <Image className="rounded-xl" src={Imagen} height={300} width={300} />
+          <Image
+            className="rounded-xl"
+            src={Imagen}
+            height={300}
+            width={300}
+            alt={supplier?.name}
+          />
         </div>
       </div>
       <div className="border p-4 rounded-md my-4">
@@ -129,23 +132,31 @@ const Proveedor = () => {
             {supplier?.infoContact?.web}
           </p>
           {supplier?.infoContact?.personalizedContact ? (
-            <div className="border p-4 rounded-md my-4">
-              <h2 className="text-gray-600 font-bold">
-                {" "}
-                {supplier.infoContact.personalizedContact.name}{" "}
-              </h2>
-              <div className="ml-4">
-                <p className="flex items-center gap-x-2">
-                  <MailIcon className="h-4" />{" "}
-                  {supplier?.infoContact?.personalizedContact.email}
-                </p>
-                <p className="flex items-center gap-x-2">
-                  <PhoneIcon className="h-4" />
-                  {supplier?.infoContact?.personalizedContact.phone}
-                </p>
-              </div>
-            </div>
-          ) : null}
+            supplier.infoContact.personalizedContact.map((contact, index) => {
+              return (
+                <div key={index} className="border p-4 rounded-md my-4">
+                  <h2 className="text-gray-600 font-bold">
+                    {contact?.title}. {contact?.name}
+                    <span className="text-sm text-gray-300">
+                      {" "}
+                      {contact?.position}
+                    </span>
+                  </h2>
+                  <div className="ml-4">
+                    <p className="flex items-center gap-x-2">
+                      <MailIcon className="h-4" /> {contact?.email}
+                    </p>
+                    <p className="flex items-center gap-x-2">
+                      <PhoneIcon className="h-4" />
+                      {contact?.phone}
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <p className="text-gray-300 mt-2">No hay contacto personalizado</p>
+          )}
         </div>
       </div>
 
@@ -171,14 +182,11 @@ const Proveedor = () => {
             </tr>
           </thead>
           {product?.map((product) => {
-            const { id, name, description, brand, audited, typeService } =
-              product!;
+            const { id, name, description, brand, audited, type } = product!;
             return (
               <tbody key={id}>
                 <tr className="bg-white">
-                  <td className="px-6 py-4">
-                    {typeService ? `Servicio ${typeService.type}` : "Producto"}
-                  </td>
+                  <td className="px-6 py-4">{type?.type}</td>
                   <th
                     scope="row"
                     className="text-md px-6 py-4 font-bold whitespace-nowrap"

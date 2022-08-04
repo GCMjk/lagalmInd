@@ -1,7 +1,7 @@
 import Image from "next/image";
 import LoginForm from "@components/App/Login";
 
-import Logo from "../../../assets/img/logo.png";
+import Logo from "@assets/img/logo.png";
 
 const Login = () => {
   return (

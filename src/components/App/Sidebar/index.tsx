@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Logo from "@assets/img/logo.svg";
+import Logo from "@assets/img/logo.png";
 
 import {
   HomeIcon,

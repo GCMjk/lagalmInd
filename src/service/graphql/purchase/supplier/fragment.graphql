@@ -41,6 +41,17 @@ fragment PurchaseSupplierFragment on PurchaseSupplier {
     ...PurchaseProductFragment
   }
   details {
-    ...DetailsFragment
+    status
+    creatorUserId
+    creatorUser {
+      name
+      email
+    }
+    creationDate
+    modifierUserId {
+      name
+      email
+    }
+    lastModification
   }
 }
