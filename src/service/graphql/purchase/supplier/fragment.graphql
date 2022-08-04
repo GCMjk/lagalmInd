@@ -39,7 +39,6 @@ fragment PurchaseSupplierFragment on PurchaseSupplier {
   classification
   productId {
     ...PurchaseProductFragment
-    ...PurchaseProductServiceFragment
   }
   details {
     ...DetailsFragment

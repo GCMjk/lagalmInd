@@ -4,7 +4,6 @@ mutation NewPurchaseProduct($product: PurchaseProductInput!) {
     message
     product {
       ...PurchaseProductFragment
-      ...PurchaseProductServiceFragment
     }
   }
 }
@@ -18,7 +17,6 @@ mutation UpdatePurchaseProduct(
     message
     product {
       ...PurchaseProductFragment
-      ...PurchaseProductServiceFragment
     }
   }
 }

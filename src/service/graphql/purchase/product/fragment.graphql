@@ -2,42 +2,13 @@ fragment PurchaseProductFragment on PurchaseProduct {
   id
   name
   description
-  brand
-  audited
-  details {
-    status
-    creatorUserId
-    creatorUser {
-      name
-    }
-    creationDate
-    modifierUserId {
-      name
-    }
-    lastModification
-  }
-}
-
-fragment PurchaseProductServiceFragment on PurchaseProductService {
-  id
-  name
-  description
-  typeService {
+  type {
     type
     description
   }
   brand
   audited
   details {
-    status
-    creatorUserId
-    creatorUser {
-      name
-    }
-    creationDate
-    modifierUserId {
-      name
-    }
-    lastModification
+    ...DetailsFragment
   }
 }

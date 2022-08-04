@@ -4,7 +4,6 @@ query getPurchaseProduct($productId: ID!) {
     message
     product {
       ...PurchaseProductFragment
-      ...PurchaseProductServiceFragment
     }
   }
 }
@@ -14,7 +13,6 @@ query getPurchaseProducts {
     message
     products {
       ...PurchaseProductFragment
-      ...PurchaseProductServiceFragment
     }
   }
 }

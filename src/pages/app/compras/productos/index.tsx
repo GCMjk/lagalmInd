@@ -15,20 +15,17 @@ const Productos = () => {
       brand: brandProduct,
       audited: auditedProduct,
       description,
-      typeService: typeServiceService,
+      type,
     }) => {
       const brand = brandProduct ? brandProduct : "N/A";
       const audited = auditedProduct ? "Si" : "No";
-      const typeService = typeServiceService
-        ? `Servicio ${typeServiceService.type}`
-        : "Producto";
       return {
         ID: id,
         Nombre: name,
         Marca: brand,
         Auditable: audited,
         Descripción: description,
-        Tipo: typeService,
+        Tipo: type?.type,
       };
     }
   ) as object[];
