@@ -38,6 +38,7 @@ module.exports = {
       },
       backgroundImage: {
         login: "url('https://picsum.photos/400/400/?random')",
+        hero: "url('https://res.cloudinary.com/lagalm/image/upload/v1660078636/hero_e2afej.jpg')",
       },
     },
   },

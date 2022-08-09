@@ -1,0 +1,29 @@
+mutation NewSaleCustomer($customer: SaleCustomerInput!) {
+  addCustomer(customer: $customer) {
+    status
+    message
+    customer {
+      ...SaleCustomerFragment
+    }
+  }
+}
+
+mutation UpdateSaleCustomer(
+  $updateCustomerId: ID!
+  $customer: SaleCustomerInput!
+) {
+  updateCustomer(id: $updateCustomerId, customer: $customer) {
+    status
+    message
+    customer {
+      ...SaleCustomerFragment
+    }
+  }
+}
+
+mutation DeleteSaleCustomer($deleteCustomerId: ID!) {
+  deleteCustomer(id: $deleteCustomerId) {
+    status
+    message
+  }
+}

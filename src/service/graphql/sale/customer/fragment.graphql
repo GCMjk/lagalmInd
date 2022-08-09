@@ -1,0 +1,20 @@
+fragment SaleCustomerFragment on SaleCustomer {
+  id
+  name
+  logo
+  infoContact {
+    email
+    phone
+    web
+    personalizedContact {
+      title
+      name
+      position
+      email
+      phone
+    }
+  }
+  details {
+    ...DetailsFragment
+  }
+}

@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { XIcon, MenuAlt3Icon } from "@heroicons/react/outline";
 
+import Logo from "@assets/img/logo.png";
 import Translate from "@components/Web/Header/Translate";
 import Socials from "@components/Socials";
 import { navigation } from "@service/data";
@@ -71,7 +73,13 @@ const NavMobile = () => {
           <XIcon className="w-8 h-8" />
         </div>
         <div>
-          <Translate bg />
+          <Image
+            src={Logo}
+            height={80}
+            width={80}
+            alt="Logo Lagalm Industiral"
+          />
+          {/* <Translate bg /> */}
         </div>
         <div className="flex justify-center flex-col items-center">
           {navigation.map(({ name, href }, index) => {

@@ -46,7 +46,7 @@ export type ContactPersonalized = {
   /** Job position */
   position?: Maybe<Scalars['String']>;
   /** Title of the person */
-  title?: Maybe<SupplierPersonalizedTitleEnum>;
+  title?: Maybe<PersonalizedTitleEnum>;
 };
 
 export type ContactPersonalizedInput = {
@@ -59,7 +59,7 @@ export type ContactPersonalizedInput = {
   /** Job position */
   position?: InputMaybe<Scalars['String']>;
   /** Title of the person */
-  title?: InputMaybe<SupplierPersonalizedTitleEnum>;
+  title?: InputMaybe<PersonalizedTitleEnum>;
 };
 
 /** Purpose of contact */
@@ -73,6 +73,29 @@ export enum ContactWorkPositionEnum {
   Sistemas = 'SISTEMAS',
   Ventas = 'VENTAS'
 }
+
+export type CustomerContact = {
+  __typename?: 'CustomerContact';
+  /** Provider email */
+  email?: Maybe<Scalars['String']>;
+  /** Personalized contacts */
+  personalizedContact?: Maybe<Array<Maybe<ContactPersonalized>>>;
+  /** Provider phone */
+  phone?: Maybe<Scalars['String']>;
+  /** Provider website */
+  web?: Maybe<Scalars['String']>;
+};
+
+export type CustomerContactInput = {
+  /** Provider email */
+  email: Scalars['String'];
+  /** Personalized contacts */
+  personalizedContact?: InputMaybe<Array<InputMaybe<ContactPersonalizedInput>>>;
+  /** Provider phone */
+  phone: Scalars['String'];
+  /** Provider website */
+  web?: InputMaybe<Scalars['String']>;
+};
 
 export type Details = {
   __typename?: 'Details';
@@ -104,6 +127,8 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** New contact */
   addContact?: Maybe<RrhhContactResult>;
+  /** New customer */
+  addCustomer?: Maybe<SaleCustomerResult>;
   /** New job */
   addJob?: Maybe<RrhhJobResult>;
   /** New permission */
@@ -118,6 +143,8 @@ export type Mutation = {
   addVacant?: Maybe<RrhhVacantResult>;
   /** Delete contact */
   deleteContact?: Maybe<RrhhContactResult>;
+  /** Delete customer */
+  deleteCustomer?: Maybe<SaleCustomerResult>;
   /** Delete job */
   deleteJob?: Maybe<RrhhJobResult>;
   /** Delete permission */
@@ -138,6 +165,8 @@ export type Mutation = {
   register?: Maybe<ResultUser>;
   /** Update contact */
   updateContact?: Maybe<RrhhContactResult>;
+  /** Update customer */
+  updateCustomer?: Maybe<SaleCustomerResult>;
   /** Update job */
   updateJob?: Maybe<RrhhJobResult>;
   /** Update permission */
@@ -157,6 +186,11 @@ export type Mutation = {
 
 export type MutationAddContactArgs = {
   contact: RrhhContactInput;
+};
+
+
+export type MutationAddCustomerArgs = {
+  customer: SaleCustomerInput;
 };
 
 
@@ -191,6 +225,11 @@ export type MutationAddVacantArgs = {
 
 
 export type MutationDeleteContactArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteCustomerArgs = {
   id: Scalars['ID'];
 };
 
@@ -247,6 +286,12 @@ export type MutationUpdateContactArgs = {
 };
 
 
+export type MutationUpdateCustomerArgs = {
+  customer: SaleCustomerInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateJobArgs = {
   id: Scalars['ID'];
   job: RrhhJobInput;
@@ -295,6 +340,17 @@ export enum PermissionTypePermissionEnum {
   Falta = 'FALTA',
   LlegarTarde = 'LLEGAR_TARDE',
   Retirarse = 'RETIRARSE'
+}
+
+export enum PersonalizedTitleEnum {
+  Ing = 'Ing',
+  Lic = 'Lic',
+  Mtr = 'Mtr',
+  Mtro = 'Mtro',
+  PhD = 'PhD',
+  Sr = 'Sr',
+  Sra = 'Sra',
+  Undefined = 'undefined'
 }
 
 export type ProductType = {
@@ -488,6 +544,10 @@ export type Query = {
   contact?: Maybe<RrhhContactResult>;
   /** Show list of contacts */
   contacts?: Maybe<RrhhContactsResult>;
+  /** Show item customer */
+  customer?: Maybe<SaleCustomerResult>;
+  /** Show list of customers */
+  customers?: Maybe<SaleCustomersResult>;
   /** Show item job */
   job?: Maybe<RrhhJobResult>;
   /** Show list of job */
@@ -525,6 +585,17 @@ export type QueryContactArgs = {
 
 
 export type QueryContactsArgs = {
+  itemsPage?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryCustomerArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryCustomersArgs = {
   itemsPage?: InputMaybe<Scalars['Int']>;
   page?: InputMaybe<Scalars['Int']>;
 };
@@ -924,6 +995,51 @@ export type RrhhVacantsResult = Result & {
   vacants?: Maybe<Array<RrhhVacant>>;
 };
 
+export type SaleCustomer = {
+  __typename?: 'SaleCustomer';
+  /** Item details */
+  details: Details;
+  /** Unique identifier */
+  id?: Maybe<Scalars['ID']>;
+  /** Contact information */
+  infoContact?: Maybe<CustomerContact>;
+  /** Customer logo */
+  logo?: Maybe<Scalars['String']>;
+  /** Customer name */
+  name: Scalars['String'];
+};
+
+export type SaleCustomerInput = {
+  /** Item creator and modifier details */
+  details?: InputMaybe<DetailsInput>;
+  /** Contact information */
+  infoContact: CustomerContactInput;
+  /** Customer logo */
+  logo: Scalars['String'];
+  /** Customer name */
+  name: Scalars['String'];
+};
+
+export type SaleCustomerResult = Result & {
+  __typename?: 'SaleCustomerResult';
+  /** Customer */
+  customer?: Maybe<SaleCustomer>;
+  /** Operation message */
+  message: Scalars['String'];
+  /** Operation status */
+  status: Scalars['Boolean'];
+};
+
+export type SaleCustomersResult = Result & {
+  __typename?: 'SaleCustomersResult';
+  /** List of Customers */
+  customers?: Maybe<Array<SaleCustomer>>;
+  /** Operation message */
+  message: Scalars['String'];
+  /** Operation status */
+  status: Scalars['Boolean'];
+};
+
 export type SupplierAddress = {
   __typename?: 'SupplierAddress';
   /** Colony */
@@ -992,17 +1108,6 @@ export type SupplierContactInput = {
   /** Provider website */
   web?: InputMaybe<Scalars['String']>;
 };
-
-export enum SupplierPersonalizedTitleEnum {
-  Ing = 'Ing',
-  Lic = 'Lic',
-  Mtr = 'Mtr',
-  Mtro = 'Mtro',
-  PhD = 'PhD',
-  Sr = 'Sr',
-  Sra = 'Sra',
-  Undefined = 'undefined'
-}
 
 export type SupplierTaxes = {
   __typename?: 'SupplierTaxes';
@@ -1110,7 +1215,7 @@ export type NewPurchaseProductMutation = { __typename?: 'Mutation', addProduct?:
 
 export type UpdatePurchaseProductMutationVariables = Exact<{
   updateProductId: Scalars['ID'];
-  updateProductProduct: PurchaseProductInput;
+  product: PurchaseProductInput;
 }>;
 
 
@@ -1171,14 +1276,14 @@ export type GetPurchaseRequisitionsQueryVariables = Exact<{ [key: string]: never
 
 export type GetPurchaseRequisitionsQuery = { __typename?: 'Query', requisitions?: { __typename?: 'PurchaseRequisitionsResult', status: boolean, message: string, requisitions?: Array<{ __typename?: 'PurchaseRequisition', id: string, autorization?: boolean | null, product?: Array<{ __typename?: 'RequisitionProduct', type?: RequisitionAmountOfEnum | null, number?: number | null, productId?: { __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null> | null, userId?: { __typename?: 'User', id: string, name: string, lastname: string, email: string, password: string, birthday: string, phone?: string | null, role: Role, lastSession: string, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } }> | null } | null };
 
-export type PurchaseSupplierFragmentFragment = { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: SupplierPersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } };
+export type PurchaseSupplierFragmentFragment = { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } };
 
 export type NewPurchaseSupplierMutationVariables = Exact<{
   supplier: PurchaseSupplierInput;
 }>;
 
 
-export type NewPurchaseSupplierMutation = { __typename?: 'Mutation', addSupplier?: { __typename?: 'PurchaseSupplierResult', status: boolean, message: string, supplier?: { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: SupplierPersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
+export type NewPurchaseSupplierMutation = { __typename?: 'Mutation', addSupplier?: { __typename?: 'PurchaseSupplierResult', status: boolean, message: string, supplier?: { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
 
 export type UpdatePurchaseSupplierMutationVariables = Exact<{
   updateSupplierId: Scalars['ID'];
@@ -1186,19 +1291,19 @@ export type UpdatePurchaseSupplierMutationVariables = Exact<{
 }>;
 
 
-export type UpdatePurchaseSupplierMutation = { __typename?: 'Mutation', updateSupplier?: { __typename?: 'PurchaseSupplierResult', status: boolean, message: string, supplier?: { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: SupplierPersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
+export type UpdatePurchaseSupplierMutation = { __typename?: 'Mutation', updateSupplier?: { __typename?: 'PurchaseSupplierResult', status: boolean, message: string, supplier?: { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
 
 export type GetPurchaseSupplierQueryVariables = Exact<{
   supplierId: Scalars['ID'];
 }>;
 
 
-export type GetPurchaseSupplierQuery = { __typename?: 'Query', supplier?: { __typename?: 'PurchaseSupplierResult', status: boolean, message: string, supplier?: { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: SupplierPersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
+export type GetPurchaseSupplierQuery = { __typename?: 'Query', supplier?: { __typename?: 'PurchaseSupplierResult', status: boolean, message: string, supplier?: { __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
 
 export type GetPurchaseSuppliersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPurchaseSuppliersQuery = { __typename?: 'Query', suppliers?: { __typename?: 'PurchaseSuppliersResult', status: boolean, message: string, suppliers?: Array<{ __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: SupplierPersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } }> | null } | null };
+export type GetPurchaseSuppliersQuery = { __typename?: 'Query', suppliers?: { __typename?: 'PurchaseSuppliersResult', status: boolean, message: string, suppliers?: Array<{ __typename?: 'PurchaseSupplier', id: string, name: string, logo?: string | null, deliveryTime?: number | null, passed?: boolean | null, classification?: SupplierClassificationEnum | null, infoContact?: { __typename?: 'SupplierContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, address?: { __typename?: 'SupplierAddress', street?: string | null, colony?: string | null, municipality?: string | null, state?: string | null, country?: string | null, zipCode?: string | null, number?: { __typename?: 'AddressNumber', interior?: string | null, exterior?: string | null } | null, streets?: { __typename?: 'AddressStreets', a?: string | null, b?: string | null } | null } | null, taxes?: { __typename?: 'SupplierTaxes', type?: SupplierTypeTaxesEnum | null, rfc?: string | null } | null, productId?: Array<{ __typename?: 'PurchaseProduct', id: string, name: string, description?: string | null, brand?: string | null, audited: boolean, type?: { __typename?: 'ProductType', type?: ProductTypeEnum | null, description?: string | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null> | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } }> | null } | null };
 
 export type RrhhContactRrhhFragmentFragment = { __typename?: 'RrhhContactRrhh', id?: string | null, name: string, email: string, phone: string, attended: boolean, age?: string | null, creationDate: string, vacantId?: { __typename?: 'RrhhVacant', id?: string | null, title: string, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, description: { __typename?: 'VacantDescription', description: Array<string | null>, benefits?: Array<string | null> | null, time?: number | null, salary?: number | null }, available: { __typename?: 'VacantAvailable', date: string, candidates: number, available?: boolean | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null };
 
@@ -1346,6 +1451,42 @@ export type GetRrhhVacantsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetRrhhVacantsQuery = { __typename?: 'Query', vacants?: { __typename?: 'RrhhVacantsResult', status: boolean, message: string, vacants?: Array<{ __typename?: 'RrhhVacant', id?: string | null, title: string, jobId: { __typename?: 'RrhhJob', title: string, description?: string | null, image?: string | null }, description: { __typename?: 'VacantDescription', description: Array<string | null>, benefits?: Array<string | null> | null, time?: number | null, salary?: number | null }, available: { __typename?: 'VacantAvailable', date: string, candidates: number, available?: boolean | null }, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } }> | null } | null };
 
+export type SaleCustomerFragmentFragment = { __typename?: 'SaleCustomer', id?: string | null, name: string, logo?: string | null, infoContact?: { __typename?: 'CustomerContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } };
+
+export type NewSaleCustomerMutationVariables = Exact<{
+  customer: SaleCustomerInput;
+}>;
+
+
+export type NewSaleCustomerMutation = { __typename?: 'Mutation', addCustomer?: { __typename?: 'SaleCustomerResult', status: boolean, message: string, customer?: { __typename?: 'SaleCustomer', id?: string | null, name: string, logo?: string | null, infoContact?: { __typename?: 'CustomerContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
+
+export type UpdateSaleCustomerMutationVariables = Exact<{
+  updateCustomerId: Scalars['ID'];
+  customer: SaleCustomerInput;
+}>;
+
+
+export type UpdateSaleCustomerMutation = { __typename?: 'Mutation', updateCustomer?: { __typename?: 'SaleCustomerResult', status: boolean, message: string, customer?: { __typename?: 'SaleCustomer', id?: string | null, name: string, logo?: string | null, infoContact?: { __typename?: 'CustomerContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
+
+export type DeleteSaleCustomerMutationVariables = Exact<{
+  deleteCustomerId: Scalars['ID'];
+}>;
+
+
+export type DeleteSaleCustomerMutation = { __typename?: 'Mutation', deleteCustomer?: { __typename?: 'SaleCustomerResult', status: boolean, message: string } | null };
+
+export type GetSaleCustomerQueryVariables = Exact<{
+  customerId: Scalars['ID'];
+}>;
+
+
+export type GetSaleCustomerQuery = { __typename?: 'Query', customer?: { __typename?: 'SaleCustomerResult', status: boolean, message: string, customer?: { __typename?: 'SaleCustomer', id?: string | null, name: string, logo?: string | null, infoContact?: { __typename?: 'CustomerContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } } | null } | null };
+
+export type GetSaleCustomersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSaleCustomersQuery = { __typename?: 'Query', customers?: { __typename?: 'SaleCustomersResult', status: boolean, message: string, customers?: Array<{ __typename?: 'SaleCustomer', id?: string | null, name: string, logo?: string | null, infoContact?: { __typename?: 'CustomerContact', email?: string | null, phone?: string | null, web?: string | null, personalizedContact?: Array<{ __typename?: 'ContactPersonalized', title?: PersonalizedTitleEnum | null, name?: string | null, position?: string | null, email?: string | null, phone?: string | null } | null> | null } | null, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } }> | null } | null };
+
 export type UserFragmentFragment = { __typename?: 'User', id: string, name: string, lastname: string, email: string, password: string, birthday: string, phone?: string | null, role: Role, lastSession: string, details: { __typename?: 'Details', status?: boolean | null, creatorUserId?: string | null, creationDate?: string | null, lastModification?: string | null, creatorUser?: { __typename?: 'User', name: string, email: string } | null, modifierUserId?: { __typename?: 'User', name: string, email: string } | null } };
 
 export type UserLoginMutationVariables = Exact<{
@@ -1393,8 +1534,9 @@ export const RrhhContactRrhhFragmentFragmentDoc = {"kind":"Document","definition
 export const RrhhContactSalesFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RrhhContactSalesFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhContactSales"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"attended"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"workPosition"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"creationDate"}}]}}]} as unknown as DocumentNode<RrhhContactSalesFragmentFragment, unknown>;
 export const RrhhJobFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RrhhJobFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhJob"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DetailsFragment"}}]}}]}},...DetailsFragmentFragmentDoc.definitions]} as unknown as DocumentNode<RrhhJobFragmentFragment, unknown>;
 export const RrhhPermissionFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RrhhPermissionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RrhhPermission"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"userId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"UserFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"from"}},{"kind":"Field","name":{"kind":"Name","value":"to"}},{"kind":"Field","name":{"kind":"Name","value":"authorization"}},{"kind":"Field","name":{"kind":"Name","value":"details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"creatorUserId"}},{"kind":"Field","name":{"kind":"Name","value":"creatorUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"UserFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"creationDate"}},{"kind":"Field","name":{"kind":"Name","value":"modifierUserId"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"UserFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lastModification"}}]}}]}},...UserFragmentFragmentDoc.definitions]} as unknown as DocumentNode<RrhhPermissionFragmentFragment, unknown>;
+export const SaleCustomerFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SaleCustomerFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleCustomer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"infoContact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"web"}},{"kind":"Field","name":{"kind":"Name","value":"personalizedContact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"details"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"DetailsFragment"}}]}}]}},...DetailsFragmentFragmentDoc.definitions]} as unknown as DocumentNode<SaleCustomerFragmentFragment, unknown>;
 export const NewPurchaseProductDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"NewPurchaseProduct"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"product"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PurchaseProductInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addProduct"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"product"},"value":{"kind":"Variable","name":{"kind":"Name","value":"product"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PurchaseProductFragment"}}]}}]}}]}},...PurchaseProductFragmentFragmentDoc.definitions]} as unknown as DocumentNode<NewPurchaseProductMutation, NewPurchaseProductMutationVariables>;
-export const UpdatePurchaseProductDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdatePurchaseProduct"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProductId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProductProduct"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PurchaseProductInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProduct"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProductId"}}},{"kind":"Argument","name":{"kind":"Name","value":"product"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProductProduct"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PurchaseProductFragment"}}]}}]}}]}},...PurchaseProductFragmentFragmentDoc.definitions]} as unknown as DocumentNode<UpdatePurchaseProductMutation, UpdatePurchaseProductMutationVariables>;
+export const UpdatePurchaseProductDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdatePurchaseProduct"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateProductId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"product"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PurchaseProductInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProduct"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateProductId"}}},{"kind":"Argument","name":{"kind":"Name","value":"product"},"value":{"kind":"Variable","name":{"kind":"Name","value":"product"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PurchaseProductFragment"}}]}}]}}]}},...PurchaseProductFragmentFragmentDoc.definitions]} as unknown as DocumentNode<UpdatePurchaseProductMutation, UpdatePurchaseProductMutationVariables>;
 export const DeletePurchaseProductDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeletePurchaseProduct"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteProductId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteProduct"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteProductId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<DeletePurchaseProductMutation, DeletePurchaseProductMutationVariables>;
 export const GetPurchaseProductDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPurchaseProduct"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"productId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"product"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"productId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PurchaseProductFragment"}}]}}]}}]}},...PurchaseProductFragmentFragmentDoc.definitions]} as unknown as DocumentNode<GetPurchaseProductQuery, GetPurchaseProductQueryVariables>;
 export const GetPurchaseProductsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPurchaseProducts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"products"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"products"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PurchaseProductFragment"}}]}}]}}]}},...PurchaseProductFragmentFragmentDoc.definitions]} as unknown as DocumentNode<GetPurchaseProductsQuery, GetPurchaseProductsQueryVariables>;
@@ -1427,6 +1569,11 @@ export const UpdateRrhhVacantDocument = {"kind":"Document","definitions":[{"kind
 export const DeleteRrhhVacantDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteRrhhVacant"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteVacantId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteVacant"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteVacantId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<DeleteRrhhVacantMutation, DeleteRrhhVacantMutationVariables>;
 export const GetRrhhVacantDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRrhhVacant"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"vacantId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacant"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"vacantId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"vacant"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RrhhVacantFragment"}}]}}]}}]}},...RrhhVacantFragmentFragmentDoc.definitions]} as unknown as DocumentNode<GetRrhhVacantQuery, GetRrhhVacantQueryVariables>;
 export const GetRrhhVacantsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRrhhVacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"vacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"vacants"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RrhhVacantFragment"}}]}}]}}]}},...RrhhVacantFragmentFragmentDoc.definitions]} as unknown as DocumentNode<GetRrhhVacantsQuery, GetRrhhVacantsQueryVariables>;
+export const NewSaleCustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"NewSaleCustomer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customer"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaleCustomerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addCustomer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"customer"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customer"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SaleCustomerFragment"}}]}}]}}]}},...SaleCustomerFragmentFragmentDoc.definitions]} as unknown as DocumentNode<NewSaleCustomerMutation, NewSaleCustomerMutationVariables>;
+export const UpdateSaleCustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateSaleCustomer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customer"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaleCustomerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCustomer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateCustomerId"}}},{"kind":"Argument","name":{"kind":"Name","value":"customer"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customer"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SaleCustomerFragment"}}]}}]}}]}},...SaleCustomerFragmentFragmentDoc.definitions]} as unknown as DocumentNode<UpdateSaleCustomerMutation, UpdateSaleCustomerMutationVariables>;
+export const DeleteSaleCustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteSaleCustomer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteCustomerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteCustomer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteCustomerId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<DeleteSaleCustomerMutation, DeleteSaleCustomerMutationVariables>;
+export const GetSaleCustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSaleCustomer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"customerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"customerId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SaleCustomerFragment"}}]}}]}}]}},...SaleCustomerFragmentFragmentDoc.definitions]} as unknown as DocumentNode<GetSaleCustomerQuery, GetSaleCustomerQueryVariables>;
+export const GetSaleCustomersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSaleCustomers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"customers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"SaleCustomerFragment"}}]}}]}}]}},...SaleCustomerFragmentFragmentDoc.definitions]} as unknown as DocumentNode<GetSaleCustomersQuery, GetSaleCustomersQueryVariables>;
 export const UserLoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UserLogin"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<UserLoginMutation, UserLoginMutationVariables>;
 export const NewUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"NewUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"user"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"register"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"user"},"value":{"kind":"Variable","name":{"kind":"Name","value":"user"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"UserFragment"}}]}}]}}]}},...UserFragmentFragmentDoc.definitions]} as unknown as DocumentNode<NewUserMutation, NewUserMutationVariables>;
 export const UpdateUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateUserId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"user"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateUserId"}}},{"kind":"Argument","name":{"kind":"Name","value":"user"},"value":{"kind":"Variable","name":{"kind":"Name","value":"user"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"UserFragment"}}]}}]}}]}},...UserFragmentFragmentDoc.definitions]} as unknown as DocumentNode<UpdateUserMutation, UpdateUserMutationVariables>;

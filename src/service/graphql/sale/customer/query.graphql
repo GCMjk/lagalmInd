@@ -1,0 +1,18 @@
+query getSaleCustomer($customerId: ID!) {
+  customer(id: $customerId) {
+    status
+    message
+    customer {
+      ...SaleCustomerFragment
+    }
+  }
+}
+query getSaleCustomers {
+  customers {
+    status
+    message
+    customers {
+      ...SaleCustomerFragment
+    }
+  }
+}

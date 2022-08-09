@@ -18,10 +18,10 @@ const Header = () => {
   return (
     <header
       className={`${
-        bg ? "bg-tertiary h-24 shadow-lg" : "bg-tertiary/5 h-20"
+        bg ? "bg-tertiary h-20 shadow-lg" : "bg-tertiary/5 h-28"
       } flex items-center fixed top-0 w-full text-white z-10 transition-all duration-300`}
     >
-      <div className="container mx-auto h-full flex items-center justify-between lg:justify-around">
+      <div className="container mx-auto h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
           <a>
@@ -40,9 +40,9 @@ const Header = () => {
         </div>
 
         {/* Translate */}
-        <div className="hidden lg:block">
+        {/* <div className="hidden lg:block">
           <Translate bg={bg} />
-        </div>
+        </div> */}
 
         {/* NavMobile */}
         <div className="lg:hidden">

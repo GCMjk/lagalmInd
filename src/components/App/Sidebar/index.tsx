@@ -19,7 +19,7 @@ const Sidebar = () => {
   const router = useRouter();
 
   return (
-    <aside className="flex h-screen w-18 flex-col items-center border-r border-gray-200 bg-white">
+    <aside className="hidden md:flex h-screen w-18 flex-col items-center border-r border-gray-200 bg-white">
       <div className="flex h-18 w-full items-center justify-center border-gray-200">
         <Image src={Logo} height={45} width={45} alt="Lagalm" />
       </div>

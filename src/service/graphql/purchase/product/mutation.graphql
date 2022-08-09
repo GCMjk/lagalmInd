@@ -10,9 +10,9 @@ mutation NewPurchaseProduct($product: PurchaseProductInput!) {
 
 mutation UpdatePurchaseProduct(
   $updateProductId: ID!
-  $updateProductProduct: PurchaseProductInput!
+  $product: PurchaseProductInput!
 ) {
-  updateProduct(id: $updateProductId, product: $updateProductProduct) {
+  updateProduct(id: $updateProductId, product: $product) {
     status
     message
     product {
