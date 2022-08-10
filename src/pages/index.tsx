@@ -1,16 +1,11 @@
-/* import { useQuery } from "@apollo/client";
-import { GetSaleCustomersDocument, SaleCustomer } from "@service/graphql";
-import Customers from "@components/Web/Home/Customers"; */
-
 import Hero from "@components/Web/Home/Hero";
+import Manufacture from "@components/Web/Home/Manufacture";
 
 const Home = () => {
-  /* const { data } = useQuery(GetSaleCustomersDocument);
-  const customers = data?.customers?.customers as SaleCustomer[]; */
   return (
     <>
       <Hero />
-      {/* <Customers customers={customers} /> */}
+      <Manufacture></Manufacture>
     </>
   );
 };

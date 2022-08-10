@@ -30,13 +30,13 @@ const Contacto = () => {
 
             <IconListUI
               title="Telefono"
-              list={["55 4422-2211", "55 0101-0202"]}
+              list={["+(52) 55 1579 4661"]}
               Icon={PhoneIcon}
             />
 
             <IconListUI
               title="Correo"
-              list={["contacto@lagalm.mx", "ventas@lagalm.mx"]}
+              list={["ventas@lagalm.mx"]}
               Icon={InboxIcon}
             />
           </div>

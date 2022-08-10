@@ -5,7 +5,13 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["picsum.photos", "img.freepik.com", "res.cloudinary.com"],
+    domains: [
+      "picsum.photos",
+      "img.freepik.com",
+      "res.cloudinary.com",
+      "images.unsplash.com",
+      "tailwindui.com",
+    ],
   },
 };
 

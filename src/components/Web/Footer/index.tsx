@@ -15,9 +15,11 @@ const Footer = () => {
                 Certificaciones
               </h3>
               <p className="text-sm">
-                Contamos con las certificaciones en ISO IATF 16949:2016 Sistema
-                de gestión de calidad en la industria automotriz y Bereau
-                Veritas.
+                Actualmente estamos certificados por la norma{" "}
+                <span className="font-bold">IATF 16949:2016</span>, para lograr
+                procesos adecuados que cumplan con los más altos estándares de
+                nuestros clientes, desde la asesoría, el diseño, la producción,
+                distribución, herramentales y hasta materiales.
               </p>
             </div>
             <div className="w-full flex justify-center lg:justify-start ml-2">
