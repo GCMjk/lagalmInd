@@ -15,11 +15,10 @@ const Contacto = () => {
         <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
           <div className="mb-12 max-w-[570px] lg:mb-0">
             <h2 className="mb-2 text-[34px] font-bold uppercase lg:text-[30px] text-gray-700">
-              Rellena la informacion del formulario
+              Rellena la información del formulario
             </h2>
             <p className="mb-10 text-base leading-relaxed text-body-color">
-              Brindandonos tus datos, haremos el proceso de contacto mas rapido
-              o tambien puedes encontrarnos en los siguientes medios
+            Brindándonos tus datos, haremos el proceso de contacto más rápido o también puedes encontrarnos en los siguientes medios
             </p>
 
             <IconListUI
@@ -29,7 +28,7 @@ const Contacto = () => {
             />
 
             <IconListUI
-              title="Telefono"
+              title="Teléfono"
               list={["+(52) 55 1579 4661"]}
               Icon={PhoneIcon}
             />
