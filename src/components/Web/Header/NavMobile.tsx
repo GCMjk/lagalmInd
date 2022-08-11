@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { XIcon, MenuAlt3Icon } from "@heroicons/react/outline";
 
-import Logo from "@assets/img/logo.png";
 import Translate from "@components/Web/Header/Translate";
 import Socials from "@components/Socials";
 import { navigation } from "@service/data";
@@ -74,7 +73,7 @@ const NavMobile = () => {
         </div>
         <div>
           <Image
-            src={Logo}
+            src="https://res.cloudinary.com/lagalm/image/upload/v1660168772/logo_nvfgba.png"
             height={80}
             width={80}
             alt="Logo Lagalm Industiral"

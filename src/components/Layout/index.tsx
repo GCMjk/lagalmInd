@@ -21,7 +21,11 @@ const Layout = ({ children }: LayoutProps) => {
           name="description"
           content="Lagalm, soluciones integrales en inyección de plástico."
         />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/svg" />
+        <link
+          rel="shortcut icon"
+          href="https://res.cloudinary.com/lagalm/image/upload/v1660168772/logo_nvfgba.png"
+          type="image/svg"
+        />
       </Head>
       {router.pathname !== "/app/login" && router.pathname.includes("/app") ? (
         <div className="flex bg-white">

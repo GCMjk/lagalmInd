@@ -17,7 +17,7 @@ const Hero = () => {
                 productos plasticos y metalicos
               </span>
             </h1>
-            <p className="text-lg pt-4 pb-8 max-w-[480px] md:pt-6 md:pb-10">
+            <p className="text-2xl pt-4 pb-8 max-w-[480px] md:pt-6 md:pb-10">
               empresa enfocada en el diseño, desarrollo y manufactura de partes
               plásticas.
             </p>

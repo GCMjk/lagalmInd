@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@assets/img/logo.png";
 
 import Nav from "@components/Web/Header/Nav";
 import NavMobile from "@components/Web/Header/NavMobile";
@@ -26,7 +25,7 @@ const Header = () => {
         <Link href="/">
           <a>
             <Image
-              src={Logo}
+              src="https://res.cloudinary.com/lagalm/image/upload/v1660168772/logo_nvfgba.png"
               width={50}
               height={50}
               alt="Logo Lagalm Industrial"

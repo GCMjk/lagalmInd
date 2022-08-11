@@ -16,10 +16,10 @@ const Footer = () => {
               </h3>
               <p className="text-sm">
                 Actualmente estamos certificados por la norma{" "}
-                <span className="font-bold">IATF 16949:2016</span>, para lograr
-                procesos adecuados que cumplan con los más altos estándares de
-                nuestros clientes, desde la asesoría, el diseño, la producción,
-                distribución, herramentales y hasta materiales.
+                <span className="font-bold font-body">IATF 16949:2016</span>,
+                para lograr procesos adecuados que cumplan con los más altos
+                estándares de nuestros clientes, desde la asesoría, el diseño,
+                la producción, distribución, herramentales y hasta materiales.
               </p>
             </div>
             <div className="w-full flex justify-center lg:justify-start ml-2">

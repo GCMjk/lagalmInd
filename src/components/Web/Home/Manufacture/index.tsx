@@ -1,129 +1,123 @@
 import Image from "next/image";
-import { PencilIcon } from "@heroicons/react/solid";
 
 const Manufacture = () => {
+  const metrics = [
+    {
+      id: 1,
+      stat: "",
+      emphasis: "",
+      rest: "PC",
+    },
+    {
+      id: 2,
+      stat: "",
+      emphasis: "",
+      rest: "PA",
+    },
+    {
+      id: 3,
+      stat: "",
+      emphasis: "",
+      rest: "POM",
+    },
+    {
+      id: 4,
+      stat: "",
+      emphasis: "",
+      rest: "PBT",
+    },
+    {
+      id: 5,
+      stat: "",
+      emphasis: "",
+      rest: "ABS",
+    },
+    {
+      id: 6,
+      stat: "",
+      emphasis: "",
+      rest: "Poliuretanos",
+    },
+    {
+      id: 7,
+      stat: "",
+      emphasis: "",
+      rest: "Acrilatos",
+    },
+    {
+      id: 8,
+      stat: "",
+      emphasis: "",
+      rest: "Con cargas aditivas como puede ser fibra de vidrio o talco",
+    },
+    {
+      id: 9,
+      stat: "",
+      emphasis: "",
+      rest: "Retardantes a la flama, aditiva resistencia a rayos UV",
+    },
+    {
+      id: 10,
+      stat: "",
+      emphasis: "",
+      rest: "Sobre moldeo con insertos metálicos o plásticos",
+    },
+  ];
   return (
-    <div className="bg-white overflow-hidden">
-      <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div className="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen" />
-        <div className="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
-          <div>
-            <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
-              Servicios
-            </h2>
-            <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl uppercase">
-              LAGALM INDUSTRIAL S.A DE C.V.,
-            </h3>
+    <div className="relative bg-gray-900 my-8">
+      <div className="h-80 absolute inset-x-0 bottom-0 xl:top-0 xl:h-full">
+        <div className="h-full w-full xl:grid xl:grid-cols-2">
+          <div className="h-full xl:relative xl:col-start-2">
+            <div className="relative h-full w-full">
+              <Image
+                layout="fill"
+                className="object-cover opacity-25 xl:absolute xl:inset-0 border"
+                src="https://res.cloudinary.com/lagalm/image/upload/v1660177455/lagalm_4_nqetpb.jpg"
+                alt="People working on laptops"
+              />
+            </div>
+
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-900 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"
+            />
           </div>
         </div>
-        <div className="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
-          <div className="relative lg:row-start-1 lg:col-start-2">
-            <svg
-              className="hidden lg:block absolute top-0 right-0 -mt-20 -mr-20"
-              width={404}
-              height={384}
-              fill="none"
-              viewBox="0 0 404 384"
-              aria-hidden="true"
-            >
-              <defs>
-                <pattern
-                  id="de316486-4a29-4312-bdfc-fbce2132a2c1"
-                  x={0}
-                  y={0}
-                  width={20}
-                  height={20}
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x={0}
-                    y={0}
-                    width={4}
-                    height={4}
-                    className="text-gray-200"
-                    fill="currentColor"
-                  />
-                </pattern>
-              </defs>
-              <rect
-                width={404}
-                height={384}
-                fill="url(#de316486-4a29-4312-bdfc-fbce2132a2c1)"
-              />
-            </svg>
-            <div className="relative text-base mx-auto max-w-prose lg:max-w-none">
-              <figure>
-                <div className="aspect-w-12 aspect-h-7 lg:aspect-none">
-                  <Image
-                    className="rounded-lg shadow-lg object-cover object-center"
-                    src="https://res.cloudinary.com/lagalm/image/upload/v1660161889/Servicios_pleu0n.jpg"
-                    alt="Whitney leaning against a railing on a downtown street"
-                    width={1184}
-                    height={1376}
-                  />
-                </div>
-                <figcaption className="mt-3 flex text-sm text-gray-500">
-                  <PencilIcon
-                    className="flex-none w-5 h-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                  <span className="ml-2">Proceso de diseño</span>
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-          <div className="mt-8 lg:mt-0">
-            <div className="text-base max-w-prose mx-auto lg:max-w-none">
-              <p className="text-lg text-gray-500">
-                ofrece soluciones y servicios de manufactura especializados en
-                el área de moldeo por inyección de resinas termoplásticas,
-                soportado en procesos robustos de ingeniera y empleo de
-                tecnologías recientes, con el fin de garantizar que los
-                requerimientos y especificaciones en los productos que establece
-                el cliente sean satisfechos, a través de un análisis y
-                evaluación de procesos, aplicando una mejora continua en
-                nuestros procedimientos, generando productos de alto valor para
-                el cliente.{" "}
-                <span className="font-semibold font-body">
-                  Empleamos herramientas de diseño CAD
+      </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
+        <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
+          <h2 className="text-sm font-semibold tracking-wide uppercase">
+            <span className="bg-gradient-to-r from-purple-300 to-indigo-300 bg-clip-text text-transparent">
+              Manufactura de productos plásticos
+            </span>
+          </h2>
+          <p className="mt-4 text-3xl font-extrabold text-white">
+            Ofrecemos manufactura de productos a través del moldeo de resinas
+            termoplásticas.
+          </p>
+          <p className="mt-4 text-lg text-gray-300">
+            Contamos con un seguimiento y gestión de nuestros procesos,
+            brindando precisión y repetibilidad en los procesos de inyección.
+          </p>
+          <p className="mt-8 text-lg text-gray-300">
+            Manejo especializado de resina de ingeniería:
+          </p>
+          <div className="my-8 grid grid-cols-1 gap-y-8 gap-x-4 sm:grid-cols-2">
+            {metrics.map((item) => (
+              <p key={item.id}>
+                <span className="block text-base text-gray-300">
+                  - {item.rest}
                 </span>
-                , aplicadas en el diseño de productos plásticos o metálicos.
-                Construimos herramientas con procesos de{" "}
-                <span className="font-semibold font-body">
-                  manufactura convencionales y tecnologías CAD/CAM
-                </span>
-                , contamos con un equipo de técnicos con especialidad en el
-                ramo.
               </p>
-            </div>
-            <div className="mt-5 prose prose-indigo text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
-              <ul role="list">
-                <li>
-                  - Moldeo por inyección de resinas plásticas. Moldeo por
-                  soplado de resinas plásticas.
-                </li>
-                <li>- Moldeo por Fundición a presión.</li>
-                <li>- Fabricación moldes para inyección de plástico.</li>
-                <li>- Fabricación moldes para fundición a presión.</li>
-                <li>- Fabricación moldes para soplado.</li>
-                <li>- Fabricación Troqueles progresivos.</li>
-                <li>- Soldadura por ultrasonido de partes plásticas.</li>
-                <li>
-                  - Fabricación de piezas mecanizadas plásticas o metálicas en
-                  serie.
-                </li>
-                <li>- Escaneo de piezas 3D con mapeo de medidas crÍticas.</li>
-                <li>
-                  - Decorado e impresión, por hot stamping, laser o inyección de
-                  tinta.
-                </li>
-                <li>
-                  - Procesos de trazabilidad e identificación con grabado laser
-                  o inyección de tinta.
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
+          <p className="pt-8 text-lg text-gray-300">
+            <span className="font-bold font-body">
+              Nuestra capacidad de inyección
+            </span>{" "}
+            va desde pequeñas partes de 1 gramo hasta fabricación de partes
+            grandes de más de 3,000 gramos.
+          </p>
         </div>
       </div>
     </div>
