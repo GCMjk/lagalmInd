@@ -76,11 +76,6 @@ export const customers = [
 
 export const certificaton = [
   {
-    name: "ISO IATF 16949:2016",
-    icon: Iatf,
-    href: "https://www.isotools.com.mx/iatf-169492016-sistemas-gestion-la-calidad-la-industria-del-automovil/",
-  },
-  {
     name: "Bureau Veritas Certificator",
     icon: bureauVeritas,
     href: "https://www.bureauveritas.com.mx/",

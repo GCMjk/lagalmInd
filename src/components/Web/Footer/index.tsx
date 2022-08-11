@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { certificaton } from "@service/data";
-import Socials from "@components/Socials";
 
 const Footer = () => {
   return (
@@ -19,7 +18,12 @@ const Footer = () => {
                 <span className="font-bold font-body">IATF 16949:2016</span>,
                 para lograr procesos adecuados que cumplan con los más altos
                 estándares de nuestros clientes, desde la asesoría, el diseño,
-                la producción, distribución, herramentales y hasta materiales.
+                la producción, distribución, herramentales y hasta materiales.{" "}
+                <Link href="https://res.cloudinary.com/lagalm/image/upload/v1660185596/certificadoIATF_ezjdnu.jpg">
+                  <a target="_blank" className="font-bold underline">
+                    Ver certificado
+                  </a>
+                </Link>
               </p>
             </div>
             <div className="w-full flex justify-center lg:justify-start ml-2">
